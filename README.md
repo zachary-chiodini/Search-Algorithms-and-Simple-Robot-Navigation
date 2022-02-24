@@ -39,7 +39,7 @@
   The reachable states of N robots is called the successor set.
 </p>
 
-<p align="center"><img src="photos/definitions.png"/></p>
+<p align="center" style="width:75%"><img src="photos/definitions.png"/></p>
 
 <p style="text-align:justify">
   Robot radii are a parameter used to calculate collisions and are allowed to be any length. 

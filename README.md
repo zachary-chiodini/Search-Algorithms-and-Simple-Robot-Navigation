@@ -1,1 +1,4 @@
-# Search-Algorithms-and-Simple-Robot-Navigation
+# Search Algorithms and Simple Robot
+The purpose of this webpage is to study and gain an understanding of some of the most common search algorithms in AI. These are breadth-first search, depth-first search, greedy search and A* search. The algorithms are written in Python and colorful animations are used to show how they work. They will be used by robots to make decisions as they navigate a lonely and barren virtual world.
+
+This problem of simple robot navigation involves N simple circular robots of radius R on a 2D m by n grid, an initial state specifying the initial positions of the robots and a goal state specifying the final positions of the robots. A solution to this problem is a path from the initial to goal state in which no robot exits the grid or smashes into another. The aforementioned searching algorithms will be used to find these solutions. Furthermore, the optimality, completeness, time complexity and space complexity of each algorithm will be compared. Navigation

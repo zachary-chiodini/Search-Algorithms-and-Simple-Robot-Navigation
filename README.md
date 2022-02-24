@@ -743,7 +743,9 @@ class Problem:
       If you are using a browser that does not support animated png files, please switch to one that does.
     </span>
   </p>
+  
   <p align="center"><img src="animations/BFS/solution1.png"/></p>
+  
   <p style="text-align:justify">
     The search process and path is animated below.
     The violet portion of the search tree shows the current path.

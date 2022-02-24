@@ -8,7 +8,7 @@
       The algorithms are written in Python and colorful animations are used to show how they work.
       They will be used by robots to make decisions as they navigate a lonely and barren virtual world.
     </p>
-    <p style="text-align:justify">
+    <p style="text-align:justify"
       This problem of simple robot navigation involves N simple circular robots of radius R on a 2D m by n grid, 
       an initial state specifying the initial positions of the robots and a goal state specifying the final positions of the robots.
       A solution to this problem is a path from the initial to goal state in which no robot exits the grid or smashes into another.
@@ -62,7 +62,7 @@
     To avoid confusion, just enjoy the proceeding animations and observe that the robots indeed do not collide.
   </p>
   <p style="text-align:center"><img style="width:1209px; height:420px" src="pictures/kinematics.png"/></p>
-  <h1 style="color:#02FF02">Writing the Problem in Python</h1>
+  <h1>Writing the Problem in Python</h1>
   <p>
     The problem is defined below in Python given an initial state, a goal state, the radius of the robots R, m and n.
     The diameter of the robots will be set to 90% the length of a grid cell for all examples on this page.
@@ -311,7 +311,7 @@
   </td></tr>
   </table>
   
-  <h1 style="color:#02FF02">Nodes and Tree Data Structure</h1>
+  <h1>Nodes and Tree Data Structure</h1>
   <p style="text-align:justify">
     A searching algorithm typically searches for a solution in what is called a tree.
     Tree structures are composed of nodes. A single node has a single parent node and one or more
@@ -330,7 +330,7 @@
   The initial state is the root node, and the goal state is a leaf node.
   A solution is the path from the root node to the node containing the goal state.
 </p>
-<h1 style="color:#02FF02">Writing the Tree in Python</h1>
+<h1>Writing the Tree in Python</h1>
 <p style="text-align:justify">
   This script defines a node which is used to create the tree.
   The paremeter number uniquely identifies a node. This is necessary when graphing the 
@@ -441,7 +441,7 @@
   </div>
   </td></tr>
   </table>
-<h1 style="color:#02FF02">Graphing and Animating the Search Process</h1>
+<h1>Graphing and Animating the Search Process</h1>
 <p style="text-align:justify">
   Graphing and animating the search process is used to visualize how the algorithms work. 
   This class generates a png of the search tree and the current path of the robot on the grid, given a node.
@@ -764,7 +764,7 @@
   </div>
   </td></tr>
   </table>
-  <h1 style="color:#02FF02">Breadth-First Search</h1>
+  <h1>Breadth-First Search</h1>
   <p style="text-align:justify">
     This algorithm is used to explore the tree by expanding all of the nodes at the present depth prior to moving on to the next depth.
     In other words, breadth-first search explores paths of length 1 first, then all those of length 2, and so on.
@@ -772,7 +772,7 @@
     complete and optimal. However, beadth-first search has an exponential time and space complexity bound,
     which means it is only practical for simple problems.
   </p>
-  <h1 style="color:#02FF02">Breadth-First Search in Python</h1>
+  <h1>Breadth-First Search in Python</h1>
   <p style="text-align:justify">
     The algorithm is written using the classes above. A list containing explored nodes is used
     to prevent the aglorithm from exploring previously visited states.
@@ -845,7 +845,7 @@
   </div>
     </td></tr>
   </table>
-  <h1 style="color:#02FF02">Examples</h1>
+  <h1>Examples</h1>
   <p style="text-align:justify">
     With only 1 robot on a 4 by 4 grid with an initial state [ ( 1, 1 ) ] and a goal state [ ( 4, 4 ) ],
     breadth-first search finds the path below.
@@ -883,7 +883,7 @@
     Due to the exponential time and space complexity of breadth-fist search, more complicated examples cannot be explored.
   </p>
   <p style="text-align:center"><img src="animations/BFS/BFS_2x3_2r.png"/><img src="animations/BFS/BFS_2x3_2r_grid.png"/></p>
-  <h1 style="color:#02FF02">Depth-First Search</h1>
+  <h1>Depth-First Search</h1>
   <p style="text-align:justify">
     This alogirthm explores the deepest level of the tree first. When the search hits a leaf node, it backtracks up the tree and
     expands a shallower level node to the deepest level, and so on. Depth-first search has an exponential time complexity bound but
@@ -893,7 +893,7 @@
     to an infinite or very deep leaf node. 
     It is also not optimal, because it does not guarantee that the shallowest goal state will be found.
   </p>
-  <h1 style="color:#02FF02">Depth-First Search in Python</h1>
+  <h1>Depth-First Search in Python</h1>
   <p style="text-align:justify">
     The script is identical to breadth-fist search except the frontier is a last-in-first-out (LIFO) queue.
   </p>
@@ -964,7 +964,7 @@
   </div>
   </td></tr>
   </table>
-  <h1 style="color:#02FF02">Examples</h1>
+  <h1>Examples</h1>
   <p style="text-align:justify">
     With only 1 robot on a 4 by 4 grid with an initial state [ ( 1, 1 ) ] and a goal state [ ( 4, 4 ) ],
     depth-first search finds the path below.
@@ -987,7 +987,7 @@
     In the example, depth-first search actually encounters a dead end and backtracks up the tree before settling on the solution.
   </p>
   <p style="text-align:center"><img src="animations/DFS/DFS_2x3_2r.png"/><img src="animations/DFS/DFS_2x3_2r_grid.png"/></p>
-  <h1 style="color:#02FF02">Greedy Search</h1>
+  <h1>Greedy Search</h1>
   <p style="text-align:justify">
     This algorithm chooses nodes based on their heuristic value in ascending order.
     The heuristic value of a node is an estimate of the "cost" to reach the goal from that node.
@@ -1000,7 +1000,7 @@
     Greedy search has, in the worst case, an exponential space and time complexity bound, but with a good heuristic function,
     these can be significantly reduced.
   </p>
-  <h1 style="color:#02FF02">Greedy Search in Python</h1>
+  <h1>Greedy Search in Python</h1>
   <p style="text-align:justify">
     The script is identical to breadth-first and depth-fist search except the frontier is not a FIFO or LIFO queue but a priority
     queue in which nodes are prioritized by their heuristic value in ascending order.
@@ -1128,7 +1128,7 @@
   </div>
   </td></tr>
   </table>
-  <h1 style="color:#02FF02">Examples</h1>
+  <h1>Examples</h1>
   <p style="text-align:justify">
     With only 1 robot on a 4 by 4 grid with an initial state [ ( 1, 1 ) ] and a goal state [ ( 4, 4 ) ],
     greedy search finds the path below.
@@ -1189,7 +1189,7 @@
     We should be happy that any solution was found, but we can do better.
   </p>
   <p style="text-align:center"><img src="animations/greedy/greedy_7x7_2r.png"/><img src="animations/greedy/greedy_7x7_2r_grid.png"/></p>
-  <h1 style="color:#02FF02">A* Search</h1>
+  <h1>A* Search</h1>
   <p style="text-align:justify">
     This algorithm chooses nodes based on the sum of their heuristic value and path cost in ascending order.
     The path cost is the sum of all step costs in the current path. 
@@ -1204,7 +1204,7 @@
     the heuristic function is consistent. Like greedy search, A* search has an exponential space and time complexity bound, 
     but with a good heuristic and path cost function, these can be significantly reduced.
   </p>
-  <h1 style="color:#02FF02">A* Search in Python</h1>
+  <h1>A* Search in Python</h1>
   <p style="text-align:justify">
     The script is identical to greedy search except the priority queue is prioritized by the heuristic value plus the path cost
     of the nodes in ascending order. The heuristic function is the same as in greedy search but termed the h score.
@@ -1447,7 +1447,7 @@
   </div>
     </td></tr>
     </table>
-<h1 style="color:#02FF02">Examples</h1>
+<h1>Examples</h1>
   <p style="text-align:justify">
     With only 1 robot on a 4 by 4 grid with an initial state [ ( 1, 1 ) ] and a goal state [ ( 4, 4 ) ],
     the modified A* search finds the path below.
@@ -1493,7 +1493,7 @@
     This eliminated billions of nodes from the search, which were predicted to lead to suboptimal solutions by the f score.
   </p>
   <p style="text-align:center"><img src="animations/astar/astar_7x7_2r.png"/><img src="animations/astar/astar_7x7_2r_grid.png"/></p>
-  <h1 style="color:#02FF02">Conclusion</h1>
+  <h1>Conclusion</h1>
   <p style="text-align:justify">
     Unfortunately, problems involving many robots spaced far apart are still infeasible.
     The time and space complexity of the modified A* search will explode during a many robot encounter.

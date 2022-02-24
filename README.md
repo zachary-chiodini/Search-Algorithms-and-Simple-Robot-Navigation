@@ -26,7 +26,7 @@
     The grid is represented by an m by n matrix in which each element is the x-y coordinate location of each cell in the grid.
   </P> 
   
-  <p style="text-align:center"> <img style="width:372px; height:343px" src="photos/grid.png"/></p>
+  <img style="width:372px; height:343px" src="photos/grid.png"/>
   
   <p style="text-align:justify">
     Each robot is given a unique integer identifier j. The cell in which the j<span style="font-size:xx-small; vertical-align:super">th</span>

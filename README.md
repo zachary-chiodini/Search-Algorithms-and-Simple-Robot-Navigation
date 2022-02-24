@@ -1,76 +1,127 @@
-<!DOCTYPE html>
-<html>
-  <body>
-    <h1>Search Algorithms & Simple Robot Navigation</h1>
-    <p style="text-align:justify">
-      The purpose of this webpage is to study and gain an understanding of some of the most common search algorithms in AI. 
-      These are breadth-first search, depth-first search, greedy search and A* search.
-      The algorithms are written in Python and colorful animations are used to show how they work.
-      They will be used by robots to make decisions as they navigate a lonely and barren virtual world.
-    </p>
-    <p style="text-align:justify">
-      This problem of simple robot navigation involves N simple circular robots of radius R on a 2D m by n grid, 
-      an initial state specifying the initial positions of the robots and a goal state specifying the final positions of the robots.
-      A solution to this problem is a path from the initial to goal state in which no robot exits the grid or smashes into another.
-      The aforementioned searching algorithms will be used to find these solutions. 
-      Furthermore, the optimality, completeness, time complexity and space complexity of each algorithm will be compared.
-    </p>
+<h1>Search Algorithms & Simple Robot Navigation</h1>
+<p style="text-align:justify">
+  The purpose of this webpage is to study and gain an understanding of some of the most common search algorithms in AI. 
+  These are breadth-first search, depth-first search, greedy search and A* search.
+  The algorithms are written in Python and colorful animations are used to show how they work.
+  They will be used by robots to make decisions as they navigate a lonely and barren virtual world.
+</p>
+<p style="text-align:justify">
+  This problem of simple robot navigation involves N simple circular robots of radius R on a 2D m by n grid, 
+  an initial state specifying the initial positions of the robots and a goal state specifying the final positions of the robots.
+  A solution to this problem is a path from the initial to goal state in which no robot exits the grid or smashes into another.
+  The aforementioned searching algorithms will be used to find these solutions. 
+  Furthermore, the optimality, completeness, time complexity and space complexity of each algorithm will be compared.
+</p>
  
-  <h1>Formalization</h1>
-  <p style="text-align:justify">
-    In order to use a computer to solve a problem, we have to formulate the problem in such a way that a computer will be abe to understand it,
-    which often involves mathematics. If you are bored by this, simply skip it and proceed to the animations, where you can
-    observe what is explained here.
-  </p>
-  <p style="text-align:justify">
-    The grid is represented by an m by n matrix in which each element is the x-y coordinate location of each cell in the grid.
-  </P> 
+<h1>Formalization</h1>
+<p style="text-align:justify">
+  In order to use a computer to solve a problem, we have to formulate the problem in such a way that a computer will be abe to understand it,
+  which often involves mathematics. If you are bored by this, simply skip it and proceed to the animations, where you can
+  observe what is explained here.
+</p>
+<p style="text-align:justify">
+  The grid is represented by an m by n matrix in which each element is the x-y coordinate location of each cell in the grid.
+</P> 
+
+<p align="center">
+  <img style="width:50%" src="photos/grid.png"/>
+</p>
+
+<p style="text-align:justify">
+  Each robot is given a unique integer identifier j. The cell in which the j<span style="font-size:xx-small; vertical-align:super">th</span>
+  robot is located is called a substate. The state of N robots is a list of each substate indexed by j in ascending order.
+  Each robot j has a set of 9 available actions:
+  { up, down, right, left, up-right, up-left, down-right, down-left, idle }.
+  The robot chooses 1 of these actions to reach 1 of 9 unique substates.
+  N robots provide N unique sets of 9 actions having 9<span style="font-size:xx-small; vertical-align:super">N</span> 
+  unique combinations, assuming their movement is unrestricted.
+  This provides 9<span style="font-size:xx-small; vertical-align:super">N</span> reachable states. 
+  The reachable states of N robots is called the successor set.
+</p>
+
+<p align="center"><img style="width:50%" src="photos/definitions.png"/></p>
+
+<p style="text-align:justify">
+  Robot radii are a parameter used to calculate collisions and are allowed to be any length. 
+  There is a vague concept of velocity in the program. 
+  The speed v of the robots must be identical moving horizontally and vertically and √2v when moving diagonally.
+  However, transitions from one state to another occur instantaneously. 
+  All robots must arrive at their subsequent substates at the same time, but that time is arbitrary.
+<p style="text-align:justify">
+  The following restrictions on the successor set apply:
+  (1) robots move by one grid unit if horizontally or vertically and two grid units if diagonally,
+  (2) robots cannot exit the grid, 
+  (3) robots cannot collide.
+  Restrictions (1) and (2) are straight forward and summarized below.
+</p>
+
+<p align="center"><img style="width:50%" src="photos/conditions.png"/></p>
+
+<p style="text-align:justify">
+  For restriction (3), simple kinematics can be used to determine whether an action leads to a collision. 
+  The derivation of how this is done is summarized below. 
+  The time taken to transition between substates is set to 1 second, for convenience.
+  If one is not familiar with kinematics, it would be hard to learn from reading this alone.
+  To avoid confusion, just enjoy the proceeding animations and observe that the robots indeed do not collide.
+</p>
+<p align="center"><img style="width:1209px; height:420px" src="photos/kinematics.png"/></p>
+<h1>Writing the Problem in Python</h1>
+<p>
+  The problem is defined below in Python given an initial state, a goal state, the radius of the robots R, m and n.
+  The diameter of the robots will be set to 90% the length of a grid cell for all examples on this page.
+</p>
   
-  <p align="center">
-    <img style="width:50%" src="photos/grid.png"/>
-  </p>
-  
-  <p style="text-align:justify">
-    Each robot is given a unique integer identifier j. The cell in which the j<span style="font-size:xx-small; vertical-align:super">th</span>
-    robot is located is called a substate. The state of N robots is a list of each substate indexed by j in ascending order.
-    Each robot j has a set of 9 available actions:
-    { up, down, right, left, up-right, up-left, down-right, down-left, idle }.
-    The robot chooses 1 of these actions to reach 1 of 9 unique substates.
-    N robots provide N unique sets of 9 actions having 9<span style="font-size:xx-small; vertical-align:super">N</span> 
-    unique combinations, assuming their movement is unrestricted.
-    This provides 9<span style="font-size:xx-small; vertical-align:super">N</span> reachable states. 
-    The reachable states of N robots is called the successor set.
-  </p>
-  <p align="center"><img style="width:450px; height:110px" src="photos/definitions.png"/></p>
-  <p style="text-align:justify">
-    Robot radii are a parameter used to calculate collisions and are allowed to be any length. 
-    There is a vague concept of velocity in the program. 
-    The speed v of the robots must be identical moving horizontally and vertically and √2v when moving diagonally.
-    However, transitions from one state to another occur instantaneously. 
-    All robots must arrive at their subsequent substates at the same time, but that time is arbitrary.
-  <p style="text-align:justify">
-    The following restrictions on the successor set apply:
-    (1) robots move by one grid unit if horizontally or vertically and two grid units if diagonally,
-    (2) robots cannot exit the grid, 
-    (3) robots cannot collide.
-    Restrictions (1) and (2) are straight forward and summarized below.
-  </p>
-  <p align="center"><img style="width:783px; height:156px" src="photos/conditions.png"/></p>
-  <p style="text-align:justify">
-    For restriction (3), simple kinematics can be used to determine whether an action leads to a collision. 
-    The derivation of how this is done is summarized below. 
-    The time taken to transition between substates is set to 1 second, for convenience.
-    If one is not familiar with kinematics, it would be hard to learn from reading this alone.
-    To avoid confusion, just enjoy the proceeding animations and observe that the robots indeed do not collide.
-  </p>
-  <p align="center"><img style="width:1209px; height:420px" src="photos/kinematics.png"/></p>
-  <h1>Writing the Problem in Python</h1>
-  <p>
-    The problem is defined below in Python given an initial state, a goal state, the radius of the robots R, m and n.
-    The diameter of the robots will be set to 90% the length of a grid cell for all examples on this page.
-  </p>
-  
-  ```python
+<table align="center">
+  <tr><td>
+  <div style="height:300px; width:750px; overflow:auto; font-family:courier">
+  <table class="table"><tr><td><div class="linenodiv" style="background-color: #454545; padding-right: 10px"><pre style="line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47</pre></div></td><td class="code"><div style="background: #002240"><pre style="line-height: 125%"><span></span>
+```python
 from typing import List, Set, Tuple
 
 

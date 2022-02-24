@@ -53,7 +53,7 @@
   Restrictions (1) and (2) are straight forward and summarized below.
 </p>
 
-<p align="center"><img src="photos/conditions.png"/></p>
+<p align="center"><img style="width:80%" src="photos/conditions.png"/></p>
 
 <p style="text-align:justify">
   For restriction (3), simple kinematics can be used to determine whether an action leads to a collision. 

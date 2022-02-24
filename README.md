@@ -71,7 +71,7 @@
   The diameter of the robots will be set to 90% the length of a grid cell for all examples on this page.
 </p>
   
-  <div style="height:300px; width:750px; overflow:auto; font-family:courier">
+<div>
   <table class="table"><tr><td><div class="linenodiv" style="background-color: #454545; padding-right: 10px"><pre style="line-height: 125%"> 1
  2
  3

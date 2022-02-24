@@ -26,7 +26,7 @@
     The grid is represented by an m by n matrix in which each element is the x-y coordinate location of each cell in the grid.
   </P> 
   
-  <p "align=center">
+  <p align="center">
     <img style="width:50%" src="photos/grid.png"/>
   </p>
   

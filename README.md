@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <title>Search Algorithms & Simple Robot Navigation</title>
-  <body style="background-color:#002240; color:white; padding:30px">
-    <h1 style="color:#02FF02">Search Algorithms & Simple Robot Navigation</h1>
+  <body>
+    <h1>Search Algorithms & Simple Robot Navigation</h1>
     <p style="text-align:justify">
       The purpose of this webpage is to study and gain an understanding of some of the most common search algorithms in AI. 
       These are breadth-first search, depth-first search, greedy search and A* search.
@@ -17,7 +16,7 @@
       Furthermore, the optimality, completeness, time complexity and space complexity of each algorithm will be compared.
     </p>
  
-  <h1 style="color:#02FF02">Formalization</h1>
+  <h1>Formalization</h1>
   <p style="text-align:justify">
     In order to use a computer to solve a problem, we have to formulate the problem in such a way that a computer will be abe to understand it,
     which often involves mathematics. If you are bored by this, simply skip it and proceed to the animations, where you can

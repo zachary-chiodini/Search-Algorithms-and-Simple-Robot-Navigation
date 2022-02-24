@@ -62,7 +62,9 @@
   If one is not familiar with kinematics, it would be hard to learn from reading this alone.
   To avoid confusion, just enjoy the proceeding animations and observe that the robots indeed do not collide.
 </p>
-<p align="center"><img src="photos/kinematics.png"/></p>
+
+<p align="center"><img style="width:150%" src="photos/kinematics.png"/></p>
+
 <h1>Writing the Problem in Python</h1>
 <p>
   The problem is defined below in Python given an initial state, a goal state, the radius of the robots R, m and n.

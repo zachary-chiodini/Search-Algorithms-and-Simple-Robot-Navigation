@@ -71,7 +71,7 @@
   The diameter of the robots will be set to 90% the length of a grid cell for all examples on this page.
 </p>
   
-[problem.py](https://github.com/zachary-chiodini/Search-Algorithms-and-Simple-Robot-Navigation/blob/main/problem.py)
+[problem.py](problem.py)
   
   <h1>Nodes and Tree Data Structure</h1>
   <p style="text-align:justify">

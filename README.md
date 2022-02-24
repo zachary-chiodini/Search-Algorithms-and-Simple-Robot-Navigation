@@ -23,9 +23,7 @@
   The grid is represented by an m by n matrix in which each element is the x-y coordinate location of each cell in the grid.
 </P> 
 
-<p align="center">
-  <img style="width:50%" src="photos/grid.png"/>
-</p>
+<p align="center"><img style="width:50%" src="photos/grid.png"/></p>
 
 <p style="text-align:justify">
   Each robot is given a unique integer identifier j. The cell in which the j<span style="font-size:xx-small; vertical-align:super">th</span>
@@ -39,7 +37,7 @@
   The reachable states of N robots is called the successor set.
 </p>
 
-<p align="center" style="width:75%"><img src="photos/definitions.png"/></p>
+<p align="center" style="width:50%"><img src="photos/definitions.png"/></p>
 
 <p style="text-align:justify">
   Robot radii are a parameter used to calculate collisions and are allowed to be any length. 

@@ -98,7 +98,7 @@ class Problem:
         succ = []
         ini_state = state  # name change
 
-        def recurse_combine(acts, N=0, new_state=[]):
+        def recurse_combine(acts, N=0, new_state=[]) -> None:
             """
             Generates N nested for loops to combine all possible actions.
             """
@@ -115,11 +115,11 @@ class Problem:
                 return succ.append(tuple(new_state))
             for sub_jf in acts[N]:
                 if sub_jf not in new_state:
-                    recurse_combine((acts, N + 1, new_state + [sub_jf])
+                    recurse_combine(acts, N + 1, new_state + [sub_jf])
 
         recurse_combine(acts)
         return set(succ)
 
-    def goal_test(self, state):
+    def goal_test(self, state: State) -> bool:
         """True if the state is a goal."""
         return state == self.goal

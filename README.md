@@ -70,7 +70,7 @@
     The diameter of the robots will be set to 90% the length of a grid cell for all examples on this page.
   </p>
   
-  ```{.python .numberLines .lineAnchors}
+  ```python
 from typing import List, Set, Tuple
 
 

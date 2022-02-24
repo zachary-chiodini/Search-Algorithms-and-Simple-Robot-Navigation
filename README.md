@@ -8,7 +8,7 @@
       The algorithms are written in Python and colorful animations are used to show how they work.
       They will be used by robots to make decisions as they navigate a lonely and barren virtual world.
     </p>
-    <p style="text-align:justify"
+    <p style="text-align:justify">
       This problem of simple robot navigation involves N simple circular robots of radius R on a 2D m by n grid, 
       an initial state specifying the initial positions of the robots and a goal state specifying the final positions of the robots.
       A solution to this problem is a path from the initial to goal state in which no robot exits the grid or smashes into another.
@@ -26,7 +26,7 @@
     The grid is represented by an m by n matrix in which each element is the x-y coordinate location of each cell in the grid.
   </P> 
   
-  <p style="text-align:center"> <img style="width:372px; height:343px" src="pictures/grid.png"/></p>
+  <p style="text-align:center"> <img style="width:372px; height:343px" src="photos/grid.png"/></p>
   
   <p style="text-align:justify">
     Each robot is given a unique integer identifier j. The cell in which the j<span style="font-size:xx-small; vertical-align:super">th</span>
@@ -39,7 +39,7 @@
     This provides 9<span style="font-size:xx-small; vertical-align:super">N</span> reachable states. 
     The reachable states of N robots is called the successor set.
   </p>
-  <p style="text-align:center"><img style="width:450px; height:110px" src="pictures/definitions.png"/></p>
+  <p style="text-align:center"><img style="width:450px; height:110px" src="photos/definitions.png"/></p>
   <p style="text-align:justify">
     Robot radii are a parameter used to calculate collisions and are allowed to be any length. 
     There is a vague concept of velocity in the program. 
@@ -53,7 +53,7 @@
     (3) robots cannot collide.
     Restrictions (1) and (2) are straight forward and summarized below.
   </p>
-  <p style="text-align:center"><img style="width:783px; height:156px" src="pictures/conditions.png"/></p>
+  <p style="text-align:center"><img style="width:783px; height:156px" src="photos/conditions.png"/></p>
   <p style="text-align:justify">
     For restriction (3), simple kinematics can be used to determine whether an action leads to a collision. 
     The derivation of how this is done is summarized below. 
@@ -61,7 +61,7 @@
     If one is not familiar with kinematics, it would be hard to learn from reading this alone.
     To avoid confusion, just enjoy the proceeding animations and observe that the robots indeed do not collide.
   </p>
-  <p style="text-align:center"><img style="width:1209px; height:420px" src="pictures/kinematics.png"/></p>
+  <p style="text-align:center"><img style="width:1209px; height:420px" src="photos/kinematics.png"/></p>
   <h1>Writing the Problem in Python</h1>
   <p>
     The problem is defined below in Python given an initial state, a goal state, the radius of the robots R, m and n.

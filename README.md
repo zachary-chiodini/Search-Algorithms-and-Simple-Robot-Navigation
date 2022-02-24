@@ -118,7 +118,7 @@
 44
 45
 46
-47</pre></div></td><td class="code"><div style="background: #002240"><pre style="line-height: 125%"><span></span>
+47
 ```python
 from typing import List, Set, Tuple
 

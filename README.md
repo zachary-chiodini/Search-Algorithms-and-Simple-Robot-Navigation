@@ -63,7 +63,7 @@
   To avoid confusion, just enjoy the proceeding animations and observe that the robots indeed do not collide.
 </p>
 
-<p align="center"><img style="height:2000" src="photos/kinematics.png"/></p>
+<p align="center"><img src="photos/kinematics.png"/></p>
 
 <h1>Writing the Problem in Python</h1>
 <p>

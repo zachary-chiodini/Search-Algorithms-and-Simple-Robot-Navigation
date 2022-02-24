@@ -27,7 +27,7 @@
   </P> 
   
   <p "align=center">
-    <img style="width:50%; margin: auto; display: block;" src="photos/grid.png"/>
+    <img style="width:50%" src="photos/grid.png"/>
   </p>
   
   <p style="text-align:justify">

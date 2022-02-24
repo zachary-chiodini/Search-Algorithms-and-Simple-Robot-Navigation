@@ -39,7 +39,7 @@
   The reachable states of N robots is called the successor set.
 </p>
 
-<p align="center"><img style="width:50%" src="photos/definitions.png"/></p>
+<p align="center"><img src="photos/definitions.png"/></p>
 
 <p style="text-align:justify">
   Robot radii are a parameter used to calculate collisions and are allowed to be any length. 
@@ -72,7 +72,7 @@
 </p>
   
 <div>
-  <table class="table"><tr><td><div class="linenodiv" style="background-color: #454545; padding-right: 10px"><pre style="line-height: 125%"> 1
+  <table><tr><td><div><pre style="line-height: 125%"> 1
  2
  3
  4
@@ -118,7 +118,7 @@
 44
 45
 46
-47</pre></table></div>
+47</pre><td><div>
 ```python
 from typing import List, Set, Tuple
 
@@ -247,6 +247,7 @@ class Problem:
         return state == self.goal
 
   ```
+</div></td></table>
   
   <h1>Nodes and Tree Data Structure</h1>
   <p style="text-align:justify">

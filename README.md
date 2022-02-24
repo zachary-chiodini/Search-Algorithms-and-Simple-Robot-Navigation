@@ -41,7 +41,7 @@
     This provides 9<span style="font-size:xx-small; vertical-align:super">N</span> reachable states. 
     The reachable states of N robots is called the successor set.
   </p>
-  <p style="text-align:center"><img style="width:450px; height:110px" src="photos/definitions.png"/></p>
+  <p align="center"><img style="width:450px; height:110px" src="photos/definitions.png"/></p>
   <p style="text-align:justify">
     Robot radii are a parameter used to calculate collisions and are allowed to be any length. 
     There is a vague concept of velocity in the program. 
@@ -55,7 +55,7 @@
     (3) robots cannot collide.
     Restrictions (1) and (2) are straight forward and summarized below.
   </p>
-  <p style="text-align:center"><img style="width:783px; height:156px" src="photos/conditions.png"/></p>
+  <p align="center"><img style="width:783px; height:156px" src="photos/conditions.png"/></p>
   <p style="text-align:justify">
     For restriction (3), simple kinematics can be used to determine whether an action leads to a collision. 
     The derivation of how this is done is summarized below. 
@@ -63,7 +63,7 @@
     If one is not familiar with kinematics, it would be hard to learn from reading this alone.
     To avoid confusion, just enjoy the proceeding animations and observe that the robots indeed do not collide.
   </p>
-  <p style="text-align:center"><img style="width:1209px; height:420px" src="photos/kinematics.png"/></p>
+  <p align="center"><img style="width:1209px; height:420px" src="photos/kinematics.png"/></p>
   <h1>Writing the Problem in Python</h1>
   <p>
     The problem is defined below in Python given an initial state, a goal state, the radius of the robots R, m and n.
@@ -856,7 +856,7 @@
       If you are using a browser that does not support animated png files, please switch to one that does.
     </span>
   </p>
-  <p style="text-align:center"><img src="animations/BFS/solution1.png"/></p>
+  <p align="center"><img src="animations/BFS/solution1.png"/></p>
   <p style="text-align:justify">
     The search process and path is animated below.
     The violet portion of the search tree shows the current path.
@@ -869,12 +869,12 @@
     Some nodes produce less children because available actions are reduced by encountering the grid boundary 
     and by preventing revisits to previously explored states.
   </p>
-  <p style="text-align:center"><img src="animations/BFS/BFS_1r.png"/><img src="animations/BFS/BFS_1r_grid.png"/></p>
+  <p align="center"><img src="animations/BFS/BFS_1r.png"/><img src="animations/BFS/BFS_1r_grid.png"/></p>
   <p style="text-align:justify">
     With 2 robots on a 2 by 3 grid with an initial state [ ( 1, 1 ), ( 2, 1 ) ] and a goal state [ ( 2, 3 ), ( 1, 3 ) ],
     breadth-first search finds the path below.
   </p>
-  <p style="text-align:center"><img src="animations/BFS/solution2.png"/></p>
+  <p align="center"><img src="animations/BFS/solution2.png"/></p>
   <p style="text-align:justify">
     The search process and path is animated below.
     On the grid to the right of the tree, the path of robot 1 is
@@ -884,7 +884,7 @@
     it reaches the goal state. 
     Due to the exponential time and space complexity of breadth-fist search, more complicated examples cannot be explored.
   </p>
-  <p style="text-align:center"><img src="animations/BFS/BFS_2x3_2r.png"/><img src="animations/BFS/BFS_2x3_2r_grid.png"/></p>
+  <p align="center"><img src="animations/BFS/BFS_2x3_2r.png"/><img src="animations/BFS/BFS_2x3_2r_grid.png"/></p>
   <h1>Depth-First Search</h1>
   <p style="text-align:justify">
     This alogirthm explores the deepest level of the tree first. When the search hits a leaf node, it backtracks up the tree and
@@ -971,24 +971,24 @@
     With only 1 robot on a 4 by 4 grid with an initial state [ ( 1, 1 ) ] and a goal state [ ( 4, 4 ) ],
     depth-first search finds the path below.
   </p>
-  <p style="text-align:center"><img src="animations/DFS/solution1.png"/></p>
+  <p align="center"><img src="animations/DFS/solution1.png"/></p>
   <p style="text-align:justify">
     The search process and path is animated below. The search expands 10 nodes before finding a solution.
     Although depth-first search found a solution after expanded less nodes, the solution is far from optimal.
   </p>
-  <p style="text-align:center"><img src="animations/DFS/DFS_1r.png"/><img src="animations/DFS/DFS_1r_grid.png"/></p>
+  <p align="center"><img src="animations/DFS/DFS_1r.png"/><img src="animations/DFS/DFS_1r_grid.png"/></p>
   <p style="text-align:justify">
     With 2 robots on a 2 by 3 grid with an initial state [ ( 1, 1 ), ( 2, 1 ) ] and a goal state [ ( 2, 3 ), ( 1, 3 ) ],
     depth-first search finds the path.
   </p>
-  <p style="text-align:center"><img src="animations/DFS/solution2.png"/></p>
+  <p align="center"><img src="animations/DFS/solution2.png"/></p>
   <p style="text-align:justify">
     The search process and path is animated below. The search expands 34 nodes before finding a solution. 
     You can see how depth-first search dives into the first node it encounters until a solution or dead end is found. 
     This leads to an aimless path in which the robots seem to randomly stumble onto the goal state. 
     In the example, depth-first search actually encounters a dead end and backtracks up the tree before settling on the solution.
   </p>
-  <p style="text-align:center"><img src="animations/DFS/DFS_2x3_2r.png"/><img src="animations/DFS/DFS_2x3_2r_grid.png"/></p>
+  <p align="center"><img src="animations/DFS/DFS_2x3_2r.png"/><img src="animations/DFS/DFS_2x3_2r_grid.png"/></p>
   <h1>Greedy Search</h1>
   <p style="text-align:justify">
     This algorithm chooses nodes based on their heuristic value in ascending order.
@@ -1135,15 +1135,15 @@
     With only 1 robot on a 4 by 4 grid with an initial state [ ( 1, 1 ) ] and a goal state [ ( 4, 4 ) ],
     greedy search finds the path below.
   </p>
-  <p style="text-align:center"><img src="animations/BFS/solution1.png"/></p>
+  <p align="center"><img src="animations/BFS/solution1.png"/></p>
   <p style="text-align:justify">
     The search process and path is animated below. The algorithm finds the optimal solution after expanding only 3 nodes.
   </p>
-  <p style="text-align:center"><img src="animations/greedy/greedy_1r.png"/><img src="animations/greedy/greedy_1r_grid.png"/></p>
+  <p align="center"><img src="animations/greedy/greedy_1r.png"/><img src="animations/greedy/greedy_1r_grid.png"/></p>
   <p style="text-align:justify">
     With 2 robots on a 2 by 3 grid with an initial state [ ( 1, 1 ), ( 2, 1 ) ] and a goal state [ ( 2, 3 ), ( 1, 3 ) ],
     greedy search finds the path below.
-    <p style="text-align:center"><img src="animations/greedy/solution2.png"/></p>
+    <p align="center"><img src="animations/greedy/solution2.png"/></p>
   </p>
   <p style="text-align:justify">
     The search process and path is animated below. Greedy search finds a solution after expanding only 5 nodes, but it is suboptimal.
@@ -1152,13 +1152,13 @@
     which greedy search will never find (it's too greedy!).
     Though greedy search often significantly reduces the time taken to find a solution, the solution is often suboptimal.
   </p>
-   <p style="text-align:center"><img src="animations/greedy/greedy_2x3_2r.png"/><img src="animations/greedy/greedy_2x3_2r_grid.png"/></p>
+   <p align="center"><img src="animations/greedy/greedy_2x3_2r.png"/><img src="animations/greedy/greedy_2x3_2r_grid.png"/></p>
   <p style="text-align:justify">
     Due to the speed of this algorithm, more complex examples can be explored.
     With 2 robots on a 7 by 7 grid with an initial state [ ( 2, 2 ), ( 6, 6 ) ] and a goal state [ ( 6, 6 ), ( 2, 2 ) ],
     greedy search finds the path below.
   </p>
-  <p style="text-align:center"><img src="animations/greedy/solution_7x7_2r.png"/></p>
+  <p align="center"><img src="animations/greedy/solution_7x7_2r.png"/></p>
   <p style="text-align:justify">
     The search process and path is animated below. Greedy search finds a solution after expanding 6 nodes.
     The depth of this solution is also 6. The shallowest goal state exists at a depth of 5, in which the two 
@@ -1190,7 +1190,7 @@
     Who would have thought a simple program and a simple problem would produce such an astounding result.
     We should be happy that any solution was found, but we can do better.
   </p>
-  <p style="text-align:center"><img src="animations/greedy/greedy_7x7_2r.png"/><img src="animations/greedy/greedy_7x7_2r_grid.png"/></p>
+  <p align="center"><img src="animations/greedy/greedy_7x7_2r.png"/><img src="animations/greedy/greedy_7x7_2r_grid.png"/></p>
   <h1>A* Search</h1>
   <p style="text-align:justify">
     This algorithm chooses nodes based on the sum of their heuristic value and path cost in ascending order.
@@ -1454,16 +1454,16 @@
     With only 1 robot on a 4 by 4 grid with an initial state [ ( 1, 1 ) ] and a goal state [ ( 4, 4 ) ],
     the modified A* search finds the path below.
   </p>
-  <p style="text-align:center"><img src="animations/BFS/solution1.png"/></p>
+  <p align="center"><img src="animations/BFS/solution1.png"/></p>
   <p style="text-align:justify">
     The search process and path is animated below. The algorithm finds the optimal solution after expanding only 3 nodes.
     The search is identical to greedy search when using a single robot.
   </p>
-  <p style="text-align:center"><img src="animations/greedy/greedy_1r.png"/><img src="animations/greedy/greedy_1r_grid.png"/></p>
+  <p align="center"><img src="animations/greedy/greedy_1r.png"/><img src="animations/greedy/greedy_1r_grid.png"/></p>
   <p style="text-align:justify">
     With 2 robots on a 2 by 3 grid with an initial state [ ( 1, 1 ), ( 2, 1 ) ] and a goal state [ ( 2, 3 ), ( 1, 3 ) ],
     the modified A* search finds the path below.
-    <p style="text-align:center"><img src="animations/astar/solution2.png"/></p>
+    <p align="center"><img src="animations/astar/solution2.png"/></p>
   </p>
   <p style="text-align:justify">
     The search process and path is animated below. The modified A* search finds a solution after expanding 6 nodes, and it is optimal.
@@ -1473,12 +1473,12 @@
     They are greedy in that they want to reach the goal state as quickly as possible but not so greedy that they can't take 
     a step back from their initial impulse and reconsider the best coarse of action.
   </p>
-   <p style="text-align:center"><img src="animations/astar/astar_2x3_2r.png"/><img src="animations/astar/astar_2x3_2r_grid.png"/></p>
+   <p align="center"><img src="animations/astar/astar_2x3_2r.png"/><img src="animations/astar/astar_2x3_2r_grid.png"/></p>
   <p style="text-align:justify">
     With 2 robots on a 7 by 7 grid with an initial state [ ( 2, 2 ), ( 6, 6 ) ] and a goal state [ ( 6, 6 ), ( 2, 2 ) ],
     the modified A* search finds the path below.
   </p>
-  <p style="text-align:center"><img src="animations/astar/solution_7x7_2r.png"/></p>
+  <p align="center"><img src="animations/astar/solution_7x7_2r.png"/></p>
   <p style="text-align:justify">
     The search process and path is animated below. 
     The modified A* search finds a solution after expanding 55 nodes.
@@ -1494,7 +1494,7 @@
     goal state. It pruned 67 of the 80 branches at the first depth and thousands from the second depth and so on.
     This eliminated billions of nodes from the search, which were predicted to lead to suboptimal solutions by the f score.
   </p>
-  <p style="text-align:center"><img src="animations/astar/astar_7x7_2r.png"/><img src="animations/astar/astar_7x7_2r_grid.png"/></p>
+  <p align="center"><img src="animations/astar/astar_7x7_2r.png"/><img src="animations/astar/astar_7x7_2r_grid.png"/></p>
   <h1>Conclusion</h1>
   <p style="text-align:justify">
     Unfortunately, problems involving many robots spaced far apart are still infeasible.

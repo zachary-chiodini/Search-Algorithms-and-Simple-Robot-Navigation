@@ -69,249 +69,135 @@
     The problem is defined below in Python given an initial state, a goal state, the radius of the robots R, m and n.
     The diameter of the robots will be set to 90% the length of a grid cell for all examples on this page.
   </p>
-  <table align="center">
-  <tr><td>
-  <div style="height:300px; width:750px; overflow:auto; font-family:courier">
-<table class="table"><tr><td><div class="linenodiv" style="background-color: #454545; padding-right: 10px"><pre style="line-height: 125%">  1
-  2
-  3
-  4
-  5
-  6
-  7
-  8
-  9
- 10
- 11
- 12
- 13
- 14
- 15
- 16
- 17
- 18
- 19
- 20
- 21
- 22
- 23
- 24
- 25
- 26
- 27
- 28
- 29
- 30
- 31
- 32
- 33
- 34
- 35
- 36
- 37
- 38
- 39
- 40
- 41
- 42
- 43
- 44
- 45
- 46
- 47
- 48
- 49
- 50
- 51
- 52
- 53
- 54
- 55
- 56
- 57
- 58
- 59
- 60
- 61
- 62
- 63
- 64
- 65
- 66
- 67
- 68
- 69
- 70
- 71
- 72
- 73
- 74
- 75
- 76
- 77
- 78
- 79
- 80
- 81
- 82
- 83
- 84
- 85
- 86
- 87
- 88
- 89
- 90
- 91
- 92
- 93
- 94
- 95
- 96
- 97
- 98
- 99
-100
-101
-102
-103
-104
-105
-106
-107
-108
-109
-110
-111
-112
-113
-114
-115
-116
-117
-118
-119</pre></div></td><td class="code"><div style="background: #002240"><pre style="line-height: 125%"><span></span><span style="color: #FF8000">class</span> <span style="color: #5E5EFF">Problem</span> :
-    <span style="color: #02FF02">&#39;&#39;&#39;</span>
-<span style="color: #02FF02">    +------------------------------------------------------------+</span>
-<span style="color: #02FF02">    |                 N Robots on an m x n Grid                  |</span>
-<span style="color: #02FF02">    +------------+-----------------------------------------------+</span>
-<span style="color: #02FF02">    | Substate j | Position of Robot j: ( xj, yj )               |</span>
-<span style="color: #02FF02">    +------------+-----------------------------------------------+</span>
-<span style="color: #02FF02">    | State N    | [ Substate 1, Substate  2, ..., Substate N ]  |</span>
-<span style="color: #02FF02">    +------------+-----------------------------------------------+</span>
-<span style="color: #02FF02">    | Actions ji | { Substate jf1, Substate jf2, ... }           |</span>
-<span style="color: #02FF02">    +------------+-----------------------------------------------+</span>
-<span style="color: #02FF02">    | Successor  | { State Nf1, State Nf2, ... }                 |</span>
-<span style="color: #02FF02">    +------------+-----------------------------------------------+</span>
-<span style="color: #02FF02">    | Conditions | (1) Robots move by one grid unit if           |</span>
-<span style="color: #02FF02">    |            |     vertically or horizontally and by two     |</span>
-<span style="color: #02FF02">    |            |     grid units if diagonally:                 |</span>
-<span style="color: #02FF02">    |            |     (a) xi - 1 &lt;= xf &lt;= xi + 1                |</span>
-<span style="color: #02FF02">    |            |     (b) yi - 1 &lt;= yf &lt;= yi + 1                |</span>
-<span style="color: #02FF02">    |            | (2) Robots cannot exit the grid:              |</span>
-<span style="color: #02FF02">    |            |     (a) 1 &lt;= xj &lt;= m                          |</span>
-<span style="color: #02FF02">    |            |     (b) 1 &lt;= yj &lt;= n                          |</span>
-<span style="color: #02FF02">    |            | (3) Robots cannot collide:                    |</span>
-<span style="color: #02FF02">    |            |     (a) See function &quot;collision&quot;              |</span>
-<span style="color: #02FF02">    +------------+-----------------------------------------------+</span>
-<span style="color: #02FF02">    &#39;&#39;&#39;</span>
-    <span style="color: #FF8000">def</span> <span style="color: #5E5EFF">__init__</span>( <span style="color: #FF69B4">self</span>, <span style="color: #FFFFFF">init</span>, <span style="color: #FFFFFF">goal</span>, <span style="color: #FFFFFF">r</span>, <span style="color: #FFFFFF">m</span>, <span style="color: #FFFFFF">n</span> ) :
-        <span style="color: #FF69B4">self</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">r</span> <span style="color: #FF8000">=</span> <span style="color: #FFFFFF">r</span>
-        <span style="color: #FF69B4">self</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">m</span> <span style="color: #FF8000">=</span> <span style="color: #FFFFFF">m</span>
-        <span style="color: #FF69B4">self</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">n</span> <span style="color: #FF8000">=</span> <span style="color: #FFFFFF">n</span>
-        <span style="color: #FF69B4">self</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">init</span> <span style="color: #FF8000">=</span> <span style="color: #FFFFFF">init</span>
-        <span style="color: #FF69B4">self</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">goal</span> <span style="color: #FF8000">=</span> <span style="color: #FFFFFF">goal</span>
-        <span style="color: #FF69B4">self</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">robots</span> <span style="color: #FF8000">=</span> <span style="color: #FF69B4">len</span>( <span style="color: #FFFFFF">init</span> )
-        
-    <span style="color: #FF8000">def</span> <span style="color: #5E5EFF">collision</span>( <span style="color: #FF69B4">self</span>, <span style="color: #FFFFFF">rj</span>, <span style="color: #FFFFFF">sub_ji</span>, <span style="color: #FFFFFF">sub_jf</span>, <span style="color: #FFFFFF">rk</span>, <span style="color: #FFFFFF">sub_ki</span>, <span style="color: #FFFFFF">sub_kf</span> ) :
-        <span style="color: #02FF02">&#39;&#39;&#39; </span>
-<span style="color: #02FF02">        Calculates the time at which a collision occurs, if a collision occurs. </span>
-<span style="color: #02FF02">        You can imagine the velocity calculations for vji, vjy, vkx and vky to </span>
-<span style="color: #02FF02">        be divided by 1 second. Therefore, if a collision occurs, it must occur</span>
-<span style="color: #02FF02">        within 1 second. This is an arbitrary time given to the robots to move </span>
-<span style="color: #02FF02">        from the initial to final substates, even though it is instantaneous.</span>
-<span style="color: #02FF02">        &#39;&#39;&#39;</span>
-        <span style="color: #FFFFFF">xji</span>, <span style="color: #FFFFFF">xjf</span> <span style="color: #FF8000">=</span> <span style="color: #FFFFFF">sub_ji</span>[ <span style="color: #FF00FF">0</span> ], <span style="color: #FFFFFF">sub_jf</span>[ <span style="color: #FF00FF">0</span> ]
-        <span style="color: #FFFFFF">yji</span>, <span style="color: #FFFFFF">yjf</span> <span style="color: #FF8000">=</span> <span style="color: #FFFFFF">sub_ji</span>[ <span style="color: #FF00FF">1</span> ], <span style="color: #FFFFFF">sub_jf</span>[ <span style="color: #FF00FF">1</span> ]
-        <span style="color: #FFFFFF">xki</span>, <span style="color: #FFFFFF">xkf</span> <span style="color: #FF8000">=</span> <span style="color: #FFFFFF">sub_ki</span>[ <span style="color: #FF00FF">0</span> ], <span style="color: #FFFFFF">sub_kf</span>[ <span style="color: #FF00FF">0</span> ]
-        <span style="color: #FFFFFF">yki</span>, <span style="color: #FFFFFF">ykf</span> <span style="color: #FF8000">=</span> <span style="color: #FFFFFF">sub_ki</span>[ <span style="color: #FF00FF">1</span> ], <span style="color: #FFFFFF">sub_kf</span>[ <span style="color: #FF00FF">1</span> ]
-        <span style="color: #FFFFFF">vjx</span>, <span style="color: #FFFFFF">vjy</span> <span style="color: #FF8000">=</span> <span style="color: #FFFFFF">xjf</span> <span style="color: #FF8000">-</span> <span style="color: #FFFFFF">xji</span>, <span style="color: #FFFFFF">yjf</span> <span style="color: #FF8000">-</span> <span style="color: #FFFFFF">yji</span>
-        <span style="color: #FFFFFF">vkx</span>, <span style="color: #FFFFFF">vky</span> <span style="color: #FF8000">=</span> <span style="color: #FFFFFF">xkf</span> <span style="color: #FF8000">-</span> <span style="color: #FFFFFF">xki</span>, <span style="color: #FFFFFF">ykf</span> <span style="color: #FF8000">-</span> <span style="color: #FFFFFF">yki</span>
-        <span style="color: #FFFFFF">a</span> <span style="color: #FF8000">=</span> ( <span style="color: #FFFFFF">vjx</span> <span style="color: #FF8000">-</span> <span style="color: #FFFFFF">vkx</span> )<span style="color: #FF8000">**</span><span style="color: #FF00FF">2</span> <span style="color: #FF8000">+</span> ( <span style="color: #FFFFFF">vjy</span> <span style="color: #FF8000">-</span> <span style="color: #FFFFFF">vky</span> )<span style="color: #FF8000">**</span><span style="color: #FF00FF">2</span>
-        <span style="color: #FFFFFF">b</span> <span style="color: #FF8000">=</span> <span style="color: #FF00FF">2</span><span style="color: #FF8000">*</span>( <span style="color: #FFFFFF">vjx</span> <span style="color: #FF8000">-</span> <span style="color: #FFFFFF">vkx</span> )<span style="color: #FF8000">*</span>( <span style="color: #FFFFFF">xji</span> <span style="color: #FF8000">-</span> <span style="color: #FFFFFF">xki</span> ) <span style="color: #FF8000">+</span> <span style="color: #FF00FF">2</span><span style="color: #FF8000">*</span>( <span style="color: #FFFFFF">vjy</span> <span style="color: #FF8000">-</span> <span style="color: #FFFFFF">vky</span> )<span style="color: #FF8000">*</span>( <span style="color: #FFFFFF">yji</span> <span style="color: #FF8000">-</span> <span style="color: #FFFFFF">yki</span> )
-        <span style="color: #FFFFFF">c</span> <span style="color: #FF8000">=</span> <span style="color: #FFFFFF">xji</span><span style="color: #FF8000">**</span><span style="color: #FF00FF">2</span> <span style="color: #FF8000">+</span> <span style="color: #FFFFFF">xki</span><span style="color: #FF8000">**</span><span style="color: #FF00FF">2</span> <span style="color: #FF8000">+</span> <span style="color: #FFFFFF">yji</span><span style="color: #FF8000">**</span><span style="color: #FF00FF">2</span> <span style="color: #FF8000">+</span> <span style="color: #FFFFFF">yki</span><span style="color: #FF8000">**</span><span style="color: #FF00FF">2</span> <span style="color: #FF8000">-</span> <span style="color: #FF00FF">2</span><span style="color: #FF8000">*</span><span style="color: #FFFFFF">xji</span><span style="color: #FF8000">*</span><span style="color: #FFFFFF">xki</span> <span style="color: #FF8000">-</span><span style="color: #FF00FF">2</span><span style="color: #FF8000">*</span><span style="color: #FFFFFF">yji</span><span style="color: #FF8000">*</span><span style="color: #FFFFFF">yki</span> <span style="color: #FF8000">-</span> ( <span style="color: #FFFFFF">rj</span> <span style="color: #FF8000">+</span> <span style="color: #FFFFFF">rk</span> )<span style="color: #FF8000">**</span><span style="color: #FF00FF">2</span>
-        <span style="color: #FFFFFF">root</span> <span style="color: #FF8000">=</span> <span style="color: #FFFFFF">b</span><span style="color: #FF8000">**</span><span style="color: #FF00FF">2</span> <span style="color: #FF8000">-</span> <span style="color: #FF00FF">4</span><span style="color: #FF8000">*</span><span style="color: #FFFFFF">a</span><span style="color: #FF8000">*</span><span style="color: #FFFFFF">c</span>
-        <span style="color: #FF8000">if</span> <span style="color: #FFFFFF">a</span> <span style="color: #FF8000">==</span> <span style="color: #FF00FF">0</span> <span style="color: #FF8000">or</span> <span style="color: #FFFFFF">root</span> <span style="color: #FF8000">&lt;</span> <span style="color: #FF00FF">0</span> :
-            <span style="color: #FF8000">return</span> <span style="color: #FF69B4">False</span>
-        <span style="color: #FFFFFF">t1</span> <span style="color: #FF8000">=</span> ( <span style="color: #FF8000">-</span><span style="color: #FFFFFF">b</span> <span style="color: #FF8000">+</span> <span style="color: #FFFFFF">root</span><span style="color: #FF8000">**</span><span style="color: #FF00FF">0.5</span> ) <span style="color: #FF8000">/</span> ( <span style="color: #FF00FF">2</span><span style="color: #FF8000">*</span><span style="color: #FFFFFF">a</span> )
-        <span style="color: #FFFFFF">t2</span> <span style="color: #FF8000">=</span> ( <span style="color: #FF8000">-</span><span style="color: #FFFFFF">b</span> <span style="color: #FF8000">-</span> <span style="color: #FFFFFF">root</span><span style="color: #FF8000">**</span><span style="color: #FF00FF">0.5</span> ) <span style="color: #FF8000">/</span> ( <span style="color: #FF00FF">2</span><span style="color: #FF8000">*</span><span style="color: #FFFFFF">a</span> )
-        <span style="color: #FF8000">if</span> <span style="color: #FF00FF">0</span> <span style="color: #FF8000">&lt;=</span> <span style="color: #FFFFFF">t1</span> <span style="color: #FF8000">&lt;=</span> <span style="color: #FF00FF">1</span> <span style="color: #FF8000">or</span> <span style="color: #FF00FF">0</span> <span style="color: #FF8000">&lt;=</span> <span style="color: #FFFFFF">t2</span> <span style="color: #FF8000">&lt;=</span> <span style="color: #FF00FF">1</span> :
-            <span style="color: #FF8000">return</span> <span style="color: #FF69B4">True</span>
-        <span style="color: #FF8000">return</span> <span style="color: #FF69B4">False</span>
-    
-    <span style="color: #FF8000">def</span> <span style="color: #5E5EFF">successor</span>( <span style="color: #FF69B4">self</span>, <span style="color: #FFFFFF">state</span> ) :
-        <span style="color: #02FF02">&#39;&#39;&#39; Generate set of reachable states from current state &#39;&#39;&#39;</span>
-        <span style="color: #FFFFFF">acts</span> <span style="color: #FF8000">=</span> [] <span style="color: #DD0000"># Substates reachable to each</span>
-                  <span style="color: #DD0000"># robot j, indexed by robot</span>
-        <span style="color: #DD0000"># Generating actions for each robot j</span>
-        <span style="color: #FF8000">for</span> <span style="color: #FFFFFF">sub</span> <span style="color: #FF8000">in</span> <span style="color: #FFFFFF">state</span> :
-            <span style="color: #FFFFFF">acts_j</span> <span style="color: #FF8000">=</span> <span style="color: #FF69B4">set</span>()
-            <span style="color: #DD0000"># (1) Robots move by one grid unit</span>
-            <span style="color: #FF8000">for</span> <span style="color: #FFFFFF">act</span> <span style="color: #FF8000">in</span> [ <span style="color: #FF00FF">0</span>, <span style="color: #FF00FF">1</span> , <span style="color: #FF8000">-</span><span style="color: #FF00FF">1</span> ] :
-                <span style="color: #FFFFFF">xi</span>, <span style="color: #FFFFFF">yi</span> <span style="color: #FF8000">=</span> <span style="color: #FFFFFF">sub</span>[ <span style="color: #FF00FF">0</span> ], <span style="color: #FFFFFF">sub</span>[ <span style="color: #FF00FF">1</span> ]
-                <span style="color: #FFFFFF">xf</span>, <span style="color: #FFFFFF">yf</span> <span style="color: #FF8000">=</span> <span style="color: #FFFFFF">sub</span>[ <span style="color: #FF00FF">0</span> ] <span style="color: #FF8000">+</span> <span style="color: #FFFFFF">act</span>, <span style="color: #FFFFFF">sub</span>[ <span style="color: #FF00FF">1</span> ] <span style="color: #FF8000">+</span> <span style="color: #FFFFFF">act</span>
-                <span style="color: #FFFFFF">xd</span>, <span style="color: #FFFFFF">yd</span> <span style="color: #FF8000">=</span> <span style="color: #FFFFFF">sub</span>[ <span style="color: #FF00FF">0</span> ] <span style="color: #FF8000">+</span> <span style="color: #FFFFFF">act</span>, <span style="color: #FFFFFF">sub</span>[ <span style="color: #FF00FF">1</span> ] <span style="color: #FF8000">-</span> <span style="color: #FFFFFF">act</span>
-                <span style="color: #DD0000"># (2) Robot cannot move outside grid</span>
-                <span style="color: #FF8000">if</span> <span style="color: #FF00FF">1</span> <span style="color: #FF8000">&lt;=</span> <span style="color: #FFFFFF">xf</span> <span style="color: #FF8000">&lt;=</span> <span style="color: #FF69B4">self</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">m</span> : 
-                    <span style="color: #DD0000"># Horizontal movement</span>
-                    <span style="color: #FFFFFF">acts_j</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">add</span>( ( <span style="color: #FFFFFF">xf</span>, <span style="color: #FFFFFF">yi</span> ) )
-                <span style="color: #FF8000">if</span> <span style="color: #FF00FF">1</span> <span style="color: #FF8000">&lt;=</span> <span style="color: #FFFFFF">yf</span> <span style="color: #FF8000">&lt;=</span> <span style="color: #FF69B4">self</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">n</span> :
-                    <span style="color: #DD0000"># Vertical movement</span>
-                    <span style="color: #FFFFFF">acts_j</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">add</span>( ( <span style="color: #FFFFFF">xi</span>, <span style="color: #FFFFFF">yf</span> ) )
-                <span style="color: #FF8000">if</span> ( <span style="color: #FF00FF">1</span> <span style="color: #FF8000">&lt;=</span> <span style="color: #FFFFFF">xf</span> <span style="color: #FF8000">&lt;=</span> <span style="color: #FF69B4">self</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">m</span> <span style="color: #FF8000">and</span>
-                     <span style="color: #FF00FF">1</span> <span style="color: #FF8000">&lt;=</span> <span style="color: #FFFFFF">yf</span> <span style="color: #FF8000">&lt;=</span> <span style="color: #FF69B4">self</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">n</span> ) :
-                    <span style="color: #DD0000"># Upper left and lower right</span>
-                    <span style="color: #DD0000"># diagonal movement</span>
-                    <span style="color: #FFFFFF">acts_j</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">add</span>( ( <span style="color: #FFFFFF">xf</span>, <span style="color: #FFFFFF">yf</span> ) )
-                <span style="color: #FF8000">if</span> ( <span style="color: #FF00FF">1</span> <span style="color: #FF8000">&lt;=</span> <span style="color: #FFFFFF">xd</span> <span style="color: #FF8000">&lt;=</span> <span style="color: #FF69B4">self</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">m</span> <span style="color: #FF8000">and</span> 
-                     <span style="color: #FF00FF">1</span> <span style="color: #FF8000">&lt;=</span> <span style="color: #FFFFFF">yd</span> <span style="color: #FF8000">&lt;=</span> <span style="color: #FF69B4">self</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">n</span> ) :
-                    <span style="color: #DD0000"># Upper right and lower left</span>
-                    <span style="color: #DD0000"># diagonal movement</span>
-                    <span style="color: #FFFFFF">acts_j</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">add</span>( ( <span style="color: #FFFFFF">xd</span>, <span style="color: #FFFFFF">yd</span> ) )
-            <span style="color: #FFFFFF">acts</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">append</span>( <span style="color: #FFFFFF">acts_j</span> )
-        <span style="color: #FFFFFF">succ</span> <span style="color: #FF8000">=</span> []
-        <span style="color: #FFFFFF">ini_state</span> <span style="color: #FF8000">=</span> <span style="color: #FFFFFF">state</span> <span style="color: #DD0000"># name change</span>
-        <span style="color: #FF8000">def</span> <span style="color: #5E5EFF">combine</span>( <span style="color: #FFFFFF">acts</span>, <span style="color: #FFFFFF">N</span> <span style="color: #FF8000">=</span> <span style="color: #FF00FF">0</span>, <span style="color: #FFFFFF">new_state</span> <span style="color: #FF8000">=</span> [] ) :
-            <span style="color: #02FF02">&#39;&#39;&#39; </span>
-<span style="color: #02FF02">            Generates N nested for loops to</span>
-<span style="color: #02FF02">            combine all possible actions.</span>
-<span style="color: #02FF02">            It must be a recursive function.</span>
-<span style="color: #02FF02">            &#39;&#39;&#39;</span>
-            <span style="color: #FF8000">if</span> <span style="color: #FFFFFF">N</span> <span style="color: #FF8000">==</span> <span style="color: #FF69B4">self</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">robots</span> :
-                <span style="color: #DD0000"># (3) Robots cannot collide</span>
-                <span style="color: #FF8000">for</span> <span style="color: #FFFFFF">j</span> <span style="color: #FF8000">in</span> <span style="color: #FF69B4">range</span>( <span style="color: #FFFFFF">N</span> ) :
-                    <span style="color: #FFFFFF">sub_ji</span> <span style="color: #FF8000">=</span> <span style="color: #FFFFFF">ini_state</span>[ <span style="color: #FFFFFF">j</span> ]
-                    <span style="color: #FFFFFF">sub_jf</span> <span style="color: #FF8000">=</span> <span style="color: #FFFFFF">new_state</span>[ <span style="color: #FFFFFF">j</span> ]
-                    <span style="color: #FF8000">for</span> <span style="color: #FFFFFF">sub_ki</span>, <span style="color: #FFFFFF">sub_kf</span> <span style="color: #FF8000">in</span> <span style="color: #FF69B4">zip</span>( <span style="color: #FFFFFF">ini_state</span>[ <span style="color: #FFFFFF">j</span> <span style="color: #FF8000">+</span> <span style="color: #FF00FF">1</span> : ], 
-                                               <span style="color: #FFFFFF">new_state</span>[ <span style="color: #FFFFFF">j</span> <span style="color: #FF8000">+</span> <span style="color: #FF00FF">1</span> : ] ) :
-                        <span style="color: #FF8000">if</span> <span style="color: #FF69B4">self</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">collision</span>( <span style="color: #FF69B4">self</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">r</span>, <span style="color: #FFFFFF">sub_ji</span>, <span style="color: #FFFFFF">sub_jf</span>, 
-                                           <span style="color: #FF69B4">self</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">r</span>, <span style="color: #FFFFFF">sub_ki</span>, <span style="color: #FFFFFF">sub_kf</span> ) :
-                            <span style="color: #FF8000">return</span> <span style="color: #DD0000"># Break all loops</span>
-                <span style="color: #FF8000">return</span> <span style="color: #FFFFFF">succ</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">append</span>( <span style="color: #FF69B4">tuple</span>( <span style="color: #FFFFFF">new_state</span> ) )
-            <span style="color: #FF8000">for</span> <span style="color: #FFFFFF">sub_jf</span> <span style="color: #FF8000">in</span> <span style="color: #FFFFFF">acts</span>[ <span style="color: #FFFFFF">N</span> ] : 
-                <span style="color: #FF8000">if</span> <span style="color: #FFFFFF">sub_jf</span> <span style="color: #FF8000">not</span> <span style="color: #FF8000">in</span> <span style="color: #FFFFFF">new_state</span> :
-                    <span style="color: #FFFFFF">combine</span>( <span style="color: #FFFFFF">acts</span>, <span style="color: #FFFFFF">N</span> <span style="color: #FF8000">+</span> <span style="color: #FF00FF">1</span>, <span style="color: #FFFFFF">new_state</span> <span style="color: #FF8000">+</span> [ <span style="color: #FFFFFF">sub_jf</span> ] )
-        <span style="color: #FFFFFF">combine</span>( <span style="color: #FFFFFF">acts</span> ) <span style="color: #DD0000"># recursion</span>
-        <span style="color: #FF8000">return</span> <span style="color: #FF69B4">set</span>( <span style="color: #FFFFFF">succ</span> )
+  
+  ```
+  from typing import List, Set, Tuple
 
-    <span style="color: #FF8000">def</span> <span style="color: #5E5EFF">goal_test</span>( <span style="color: #FF69B4">self</span>, <span style="color: #FFFFFF">state</span> ) :
-        <span style="color: #02FF02">&#39;&#39;&#39; True if the state is a goal. &#39;&#39;&#39;</span>
-        <span style="color: #FF8000">return</span> <span style="color: #FFFFFF">state</span> <span style="color: #FF8000">==</span> <span style="color: #FF69B4">self</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">goal</span>
-</pre></div>
-</td></tr></table>
-  </div>
-  </td></tr>
-  </table>
+
+class Problem:
+    """
+    +------------------------------------------------------------+
+    |                 N Robots on an m x n Grid                  |
+    +------------+-----------------------------------------------+
+    | Substate j | Position of Robot j: ( xj, yj )               |
+    +------------+-----------------------------------------------+
+    | State N    | [ Substate 1, Substate  2, ..., Substate N ]  |
+    +------------+-----------------------------------------------+
+    | Actions ji | { Substate jf1, Substate jf2, ... }           |
+    +------------+-----------------------------------------------+
+    | Successor  | { State Nf1, State Nf2, ... }                 |
+    +------------+-----------------------------------------------+
+    | Conditions | (1) Robots move by one grid unit if           |
+    |            |     vertically or horizontally and by two     |
+    |            |     grid units if diagonally:                 |
+    |            |     (a) xi - 1 <= xf <= xi + 1                |
+    |            |     (b) yi - 1 <= yf <= yi + 1                |
+    |            | (2) Robots cannot exit the grid:              |
+    |            |     (a) 1 <= xj <= m                          |
+    |            |     (b) 1 <= yj <= n                          |
+    |            | (3) Robots cannot collide:                    |
+    |            |     (a) See function "collision"              |
+    +------------+-----------------------------------------------+
+    """
+
+    Substate = Tuple[int, int]
+    State = List[Substate]
+    Radius = float
+
+    def __init__(self, init: State, goal: State, r: Radius, m: int, n: int):
+        self.r = r
+        self.m = m
+        self.n = n
+        self.init = init
+        self.goal = goal
+        self.robots = len(init)
+
+    @staticmethod
+    def collision(self, rj: Radius, sub_ji: Substate, sub_jf: Substate,
+                  rk: Radius, sub_ki: Substate, sub_kf: Substate) -> bool:
+        """
+        Calculates the time at which a collision occurs, if a collision occurs.
+        You can imagine the velocity calculations for vji, vjy, vkx and vky to
+        be divided by 1 second. Therefore, if a collision occurs, it must occur
+        within 1 second. This is an arbitrary time given to the robots to move
+        from the initial to final substates, even though it is instantaneous.
+        """
+        xji, xjf = sub_ji[0], sub_jf[0]
+        yji, yjf = sub_ji[1], sub_jf[1]
+        xki, xkf = sub_ki[0], sub_kf[0]
+        yki, ykf = sub_ki[1], sub_kf[1]
+        vjx, vjy = xjf - xji, yjf - yji
+        vkx, vky = xkf - xki, ykf - yki
+        a = (vjx - vkx)**2 + (vjy - vky)**2
+        b = 2*(vjx - vkx) * (xji - xki) + 2*(vjy - vky)*(yji - yki)
+        c = xji**2 + xki**2 + yji**2 + yki**2 - 2*xji*xki - 2*yji*yki - (rj + rk)**2
+        root = b**2 - 4*a*c
+        if a == 0 or root < 0:
+            return False
+        t1 = (-b + root**0.5) / (2*a)
+        t2 = (-b - root**0.5) / (2*a)
+        if 0 <= t1 <= 1 or 0 <= t2 <= 1:
+            return True
+        return False
+
+    def successor(self, state: State) -> Set[State]:
+        """Generate set of reachable states from current state."""
+        acts = []  # Substates reachable to each robot j, indexed by robot.
+        # Generating actions for each robot j.
+        for sub in state:
+            acts_j = set()
+            # (1) Robots move by one grid unit
+            for act in [0, 1, -1]:
+                xi, yi = sub[0], sub[1]
+                xf, yf = sub[0] + act, sub[1] + act
+                xd, yd = sub[0] + act, sub[1] - act
+                # (2) Robots cannot move outside grid
+                if 1 <= xf <= self.m:
+                    # Horizontal movement
+                    acts_j.add((xf, yi))
+                if 1 <= yf <= self.n:
+                    # Vertical movement
+                    acts_j.add((xi, yf))
+                if (1 <= xf <= self.m and
+                        1 <= yf <= self.n):
+                    # Upper left and lower right diagonal movement
+                    acts_j.add((xf, yf))
+                if (1 <= xd <= self.m and
+                        1 <= yd <= self.n):
+                    # Upper right and lower left diagonal movement
+                    acts_j.add((xd, yd))
+            acts.append(acts_j)
+
+        succ = []
+        ini_state = state  # name change
+
+        def recurse_combine(acts, N=0, new_state=[]) -> None:
+            """
+            Generates N nested for loops to combine all possible actions.
+            """
+            if N == self.robots:
+                # (3) Robots cannot collide
+                for j in range(N):
+                    sub_ji = ini_state[j]
+                    sub_jf = new_state[j]
+                    for sub_ki, sub_kf in zip(ini_state[j + 1:],
+                                              new_state[j + 1:]):
+                        if self.collision(self.r, sub_ji, sub_jf,
+                                          self.r, sub_ki, sub_kf):
+                            return  # Break all loops
+                return succ.append(tuple(new_state))
+            for sub_jf in acts[N]:
+                if sub_jf not in new_state:
+                    recurse_combine(acts, N + 1, new_state + [sub_jf])
+
+        recurse_combine(acts)
+        return set(succ)
+
+    def goal_test(self, state: State) -> bool:
+        """True if the state is a goal."""
+        return state == self.goal
+
+  ```
   
   <h1>Nodes and Tree Data Structure</h1>
   <p style="text-align:justify">

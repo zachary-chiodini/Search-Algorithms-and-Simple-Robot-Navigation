@@ -8,7 +8,7 @@ class Node:
 
     def __init__(self, state: State, parent: Optional['Node'] = None,
                  children=0, pathcost=0.0, sibling=0, number=0):
-        """Create a search tree node"""
+        """Create a search tree node."""
         self.state = state
         self.parent = parent
         self.children = children

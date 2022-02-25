@@ -158,7 +158,9 @@
   With 2 robots on a 2 by 3 grid with an initial state [ ( 1, 1 ), ( 2, 1 ) ] and a goal state [ ( 2, 3 ), ( 1, 3 ) ],
   breadth-first search finds the path below.
 </p>
+
 <p align="center"><img src="animations/BFS/solution2.png"/></p>
+
 <p style="text-align:justify">
   The search process and path is animated below.
   On the grid to the right of the tree, the path of robot 1 is
@@ -183,73 +185,9 @@
 <p style="text-align:justify">
   The script is identical to breadth-fist search except the frontier is a last-in-first-out (LIFO) queue.
 </p>
-<table align="center">
-<tr><td>
-<div style="height:300px; width:750px; overflow:auto; font-family:courier">
-<table class="table"><tr><td><div class="linenodiv" style="background-color: #454545; padding-right: 10px"><pre style="line-height: 125%"> 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30</pre></div></td><td class="code"><div style="background: #002240"><pre style="line-height: 125%"><span></span><span style="color: #FF8000">def</span> <span style="color: #5E5EFF">depth_first_search</span>( <span style="color: #FFFFFF">init</span>, <span style="color: #FFFFFF">goal</span>, <span style="color: #FFFFFF">r</span>, <span style="color: #FFFFFF">m</span>, <span style="color: #FFFFFF">n</span> ) :
-  <span style="color: #FFFFFF">init</span>, <span style="color: #FFFFFF">goal</span> <span style="color: #FF8000">=</span> <span style="color: #FF69B4">tuple</span>( <span style="color: #FFFFFF">init</span> ), <span style="color: #FF69B4">tuple</span>( <span style="color: #FFFFFF">goal</span> )
-  <span style="color: #FFFFFF">graph</span> <span style="color: #FF8000">=</span> <span style="color: #FFFFFF">Graph</span>()
-  <span style="color: #FFFFFF">problem</span> <span style="color: #FF8000">=</span> <span style="color: #FFFFFF">Problem</span>( <span style="color: #FFFFFF">init</span>, <span style="color: #FFFFFF">goal</span>, <span style="color: #FFFFFF">r</span>, <span style="color: #FFFFFF">m</span>, <span style="color: #FFFFFF">n</span> )
-  <span style="color: #FFFFFF">node_id</span> <span style="color: #FF8000">=</span> <span style="color: #FF00FF">0</span> <span style="color: #DD0000"># node identifier for graph</span>
-  <span style="color: #FFFFFF">sibling</span> <span style="color: #FF8000">=</span> <span style="color: #FF00FF">0</span> <span style="color: #DD0000"># sibling identifier for graph</span>
-  <span style="color: #FFFFFF">frontier</span> <span style="color: #FF8000">=</span> [ <span style="color: #FFFFFF">Node</span>( <span style="color: #FFFFFF">init</span> ) ]
-  <span style="color: #FFFFFF">explored</span> <span style="color: #FF8000">=</span> []
-  <span style="color: #FF8000">while</span> <span style="color: #FF69B4">True</span> :
-      <span style="color: #FF8000">if</span> <span style="color: #FFFFFF">frontier</span> <span style="color: #FF8000">==</span> [] : <span style="color: #FF8000">return</span> <span style="color: #02FF02">&#39;Failure&#39;</span>
-      <span style="color: #FFFFFF">node</span> <span style="color: #FF8000">=</span> <span style="color: #FFFFFF">frontier</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">pop</span>( <span style="color: #FF8000">-</span><span style="color: #FF00FF">1</span> ) <span style="color: #DD0000"># LIFO queue</span>
-      <span style="color: #FFFFFF">graph</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">tree</span>( <span style="color: #FFFFFF">node</span> )
-      <span style="color: #FFFFFF">graph</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">grid</span>( <span style="color: #FFFFFF">node</span>, <span style="color: #FFFFFF">m</span>, <span style="color: #FFFFFF">n</span> )
-      <span style="color: #FF8000">if</span> <span style="color: #FFFFFF">problem</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">goal_test</span>( <span style="color: #FFFFFF">node</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">state</span> ) :
-          <span style="color: #FF8000">return</span> <span style="color: #FFFFFF">node</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">path</span>( <span style="color: #FFFFFF">node</span> )[ <span style="color: #02FF02">&#39;path&#39;</span> ]
-      <span style="color: #FFFFFF">explored</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">append</span>( <span style="color: #FFFFFF">node</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">state</span> )
-      <span style="color: #FFFFFF">children</span> <span style="color: #FF8000">=</span> []
-      <span style="color: #FF8000">for</span> <span style="color: #FFFFFF">state</span> <span style="color: #FF8000">in</span> <span style="color: #FFFFFF">problem</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">successor</span>( <span style="color: #FFFFFF">node</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">state</span> ) :
-          <span style="color: #FFFFFF">child</span> <span style="color: #FF8000">=</span> <span style="color: #FFFFFF">Node</span>( <span style="color: #FFFFFF">state</span>, <span style="color: #FFFFFF">parent</span> <span style="color: #FF8000">=</span> <span style="color: #FFFFFF">node</span> )
-          <span style="color: #FF8000">if</span> <span style="color: #FFFFFF">child</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">state</span> <span style="color: #FF8000">not</span> <span style="color: #FF8000">in</span> <span style="color: #FFFFFF">explored</span> :
-              <span style="color: #FFFFFF">node_id</span> <span style="color: #FF8000">+=</span> <span style="color: #FF00FF">1</span>
-              <span style="color: #FFFFFF">node</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">children</span> <span style="color: #FF8000">+=</span> <span style="color: #FF00FF">1</span>
-              <span style="color: #FFFFFF">child</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">number</span> <span style="color: #FF8000">=</span> <span style="color: #FFFFFF">node_id</span>
-              <span style="color: #FFFFFF">child</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">sibling</span> <span style="color: #FF8000">=</span> <span style="color: #FFFFFF">sibling</span>
-              <span style="color: #FFFFFF">children</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">append</span>( <span style="color: #FFFFFF">child</span> )
-              <span style="color: #FFFFFF">frontier</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">append</span>( <span style="color: #FFFFFF">child</span> )
-              <span style="color: #FFFFFF">sibling</span> <span style="color: #FF8000">+=</span> <span style="color: #FF00FF">1</span>
-      <span style="color: #FFFFFF">sibling</span> <span style="color: #FF8000">=</span> <span style="color: #FF00FF">0</span>
-      <span style="color: #FFFFFF">graph</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">tree</span>( <span style="color: #FFFFFF">node</span>, <span style="color: #FFFFFF">children</span> )
-      <span style="color: #FFFFFF">graph</span><span style="color: #FF8000">.</span><span style="color: #FFFFFF">grid</span>( <span style="color: #FFFFFF">node</span>, <span style="color: #FFFFFF">m</span>, <span style="color: #FFFFFF">n</span>, <span style="color: #FFFFFF">children</span> )
-</pre></div>
-</td></tr></table>
-</div>
-</td></tr>
-</table>
+
+[dfs.py](dfs.py)
+
 <h1>Examples</h1>
 <p style="text-align:justify">
   With only 1 robot on a 4 by 4 grid with an initial state [ ( 1, 1 ) ] and a goal state [ ( 4, 4 ) ],

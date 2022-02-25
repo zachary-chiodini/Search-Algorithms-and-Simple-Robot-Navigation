@@ -5,29 +5,26 @@ from tree import Node
 from typing import List, Tuple, Union
 
 
-Vector = Tuple[float, float]
-
-
 def greedy_search(
         init: State, goal: State, r: Radius, m: int, n: int
         ) -> Union[str, List[State]]:
 
-    def magnitude(v: Vector) -> float:
+    def magnitude(v: Tuple[int, int]) -> float:
         """Magnitude of vector v."""
-        return (v[0] ** 2 + v[1] ** 2) ** 0.5
+        return (v[0]**2 + v[1]**2)**0.5
 
-    def difference(sub_f: Substate, sub_i: Substate) -> Vector:
+    def difference(sub_f: Substate, sub_i: Substate) -> Tuple[int, int]:
         """Vector difference between substate f and i."""
         return sub_f[0] - sub_i[0], sub_f[1] - sub_i[1]
 
     def distance(sub_i: Substate, sub_f: Substate) -> float:
-        """Straight line distance from substate i to f"""
+        """Straight line distance from substate i to f."""
         return magnitude(difference(sub_f, sub_i))
 
     def heuristic(state_n: State, goal_: State):
         """
         Sum of estimated distance each robot j has to
-        travel from substate j to the goal substate j
+        travel from substate j to the goal substate j.
         """
         return sum(distance(state_n[j], goal_[j])
                    for j in range(problem.robots))

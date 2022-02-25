@@ -41,7 +41,7 @@ class Problem:
         self.robots = len(init)
 
     @staticmethod
-    def collision(self, rj: Radius, sub_ji: Substate, sub_jf: Substate,
+    def collision(rj: Radius, sub_ji: Substate, sub_jf: Substate,
                   rk: Radius, sub_ki: Substate, sub_kf: Substate) -> bool:
         """
         Calculates the time at which a collision occurs, if a collision occurs.
@@ -118,7 +118,7 @@ class Problem:
                 if sub_jf not in new_state:
                     _nested_recurse_combine(N + 1, new_state + [sub_jf])
 
-        _nested_recurse_combine(acts)
+        _nested_recurse_combine()
         return set(succ)
 
     def goal_test(self, state: State) -> bool:

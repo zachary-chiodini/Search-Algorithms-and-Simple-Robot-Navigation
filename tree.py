@@ -1,4 +1,4 @@
-from typing import List, Optional, TypedDict, Tuple
+from typing import List, Optional, TypedDict
 
 from problem import State
 

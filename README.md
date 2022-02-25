@@ -135,10 +135,8 @@
 <p style="text-align:justify">
   With only 1 robot on a 4 by 4 grid with an initial state [ ( 1, 1 ) ] and a goal state [ ( 4, 4 ) ],
   breadth-first search finds the path below.
-  <span style="color:#DD0000">
-    This site uses animated png files to illustrate how the algorithms work. 
-    If you are using a browser that does not support animated png files, please switch to one that does.
-  </span>
+  (This site uses animated png files to illustrate how the algorithms work. 
+  If you are using a browser that does not support animated png files, please switch to one that does.)
 </p>
 
 <p align="center"><img src="animations/BFS/solution1.png"/></p>

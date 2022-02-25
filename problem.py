@@ -1,6 +1,11 @@
 from typing import List, Set, Tuple
 
 
+Substate = Tuple[int, int]
+State = List[Substate]
+Radius = float
+
+
 class Problem:
     """
     +------------------------------------------------------------+
@@ -26,10 +31,6 @@ class Problem:
     |            |     (a) See function "collision"              |
     +------------+-----------------------------------------------+
     """
-
-    Substate = Tuple[int, int]
-    State = List[Substate]
-    Radius = float
 
     def __init__(self, init: State, goal: State, r: Radius, m: int, n: int):
         self.r = r
@@ -69,7 +70,7 @@ class Problem:
 
     def successor(self, state: State) -> Set[State]:
         """Generate set of reachable states from current state."""
-        acts = []  # Substates reachable to each robot j, indexed by robot.
+        acts: List[Set[Substate]] = []  # Substates reachable to each robot j, indexed by robot.
         # Generating actions for each robot j.
         for sub in state:
             acts_j = set()
@@ -98,7 +99,7 @@ class Problem:
         succ = []
         ini_state = state  # name change
 
-        def recurse_combine(acts, N=0, new_state=[]) -> None:
+        def _nested_recurse_combine(N=0, new_state: State = []) -> None:
             """
             Generates N nested for loops to combine all possible actions.
             """
@@ -115,9 +116,9 @@ class Problem:
                 return succ.append(tuple(new_state))
             for sub_jf in acts[N]:
                 if sub_jf not in new_state:
-                    recurse_combine(acts, N + 1, new_state + [sub_jf])
+                    _nested_recurse_combine(N + 1, new_state + [sub_jf])
 
-        recurse_combine(acts)
+        _nested_recurse_combine(acts)
         return set(succ)
 
     def goal_test(self, state: State) -> bool:

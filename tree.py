@@ -1,14 +1,19 @@
-from typing import List, Optional, Tuple
+from typing import List, Optional, TypedDict, Tuple
+
+Substate = Tuple[int, int]
+State = List[Substate]
+
+
+class Path(TypedDict):
+    number: List[int]
+    path: List[State]
 
 
 class Node:
 
-    Substate = Tuple[int, int]
-    State = List[Substate]
-
     def __init__(self, state: State, parent: Optional['Node'] = None,
                  children=0, pathcost=0.0, sibling=0, number=0):
-        """Create a search tree node."""
+        """Create a search tree node"""
         self.state = state
         self.parent = parent
         self.children = children
@@ -17,11 +22,7 @@ class Node:
         self.number = number
 
     @staticmethod
-    def reverse(self, list_: List):
-        return list_[::-1]
-
-    @staticmethod
-    def lineage(self, child: 'Node'):
+    def lineage(self, child: 'Node') -> int:
         """
         Generates the product of the count of all
         parent nodes and their children, used to
@@ -35,18 +36,15 @@ class Node:
             child = parent
         return n
 
-    def path(self, child: 'Node'):
+    def path(self, child: 'Node') -> Path:
         """
         Returns a dictionary of the chosen states
         and identifiers for the chosen nodes.
         """
-        path = {'path': [child.state],
-                'number': [child.number]}
+        path: Path = {'number': [child.number], 'path': [child.state]}
         while child.parent:
             parent = child.parent
-            path['path'].append(parent.state)
-            path['number'].append(parent.number)
+            path['number'].insert(0, parent.number)
+            path['path'].insert(0, parent.state)
             child = parent
-        path['path'] = self.reverse(path['path'])
-        path['number'] = self.reverse(path['number'])
         return path

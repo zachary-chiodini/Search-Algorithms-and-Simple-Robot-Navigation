@@ -22,7 +22,7 @@ class Node:
         self.number = number
 
     @staticmethod
-    def lineage(self, child: 'Node') -> int:
+    def lineage(child: 'Node') -> int:
         """
         Generates the product of the count of all
         parent nodes and their children, used to
@@ -36,7 +36,8 @@ class Node:
             child = parent
         return n
 
-    def path(self, child: 'Node') -> Path:
+    @staticmethod
+    def path_to(child: 'Node') -> Path:
         """
         Returns a dictionary of the chosen states
         and identifiers for the chosen nodes.

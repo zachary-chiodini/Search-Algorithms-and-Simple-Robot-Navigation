@@ -15,7 +15,7 @@ def depth_first_search(
     frontier = [Node(init)]
     explored = set()
     while True:
-        if frontier:
+        if not frontier:
             return 'Failure'
         node = frontier.pop(-1)  # LIFO queue
         graph.tree(node)

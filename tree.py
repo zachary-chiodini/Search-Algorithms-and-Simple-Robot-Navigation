@@ -1,7 +1,6 @@
 from typing import List, Optional, TypedDict, Tuple
 
-Substate = Tuple[int, int]
-State = List[Substate]
+from problem import State
 
 
 class Path(TypedDict):

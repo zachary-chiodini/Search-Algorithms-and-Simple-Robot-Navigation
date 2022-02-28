@@ -1,5 +1,8 @@
 <h1>Search Algorithms and Simple Robot Navigation</h1>
 <p style="text-align:justify">
+  This page must be viewed in dark mode.
+</p>
+<p style="text-align:justify">
   The purpose of this repo is to study and gain an understanding of some of the most common search algorithms in AI. 
   These are breadth-first search, depth-first search, greedy search and A* search.
   The algorithms are written in Python and colorful animations are used to show how they work.

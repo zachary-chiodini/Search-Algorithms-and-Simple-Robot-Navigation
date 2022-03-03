@@ -1,6 +1,6 @@
 <h1>Search Algorithms and Simple Robot Navigation</h1>
 <p style="text-align:justify">
-  *This page must be viewed in dark mode.*
+  *This page must be viewed in dark mode.* 🕶
 </p>
 <p style="text-align:justify">
   The purpose of this repo is to study and gain an understanding of some of the most common search algorithms in AI. 

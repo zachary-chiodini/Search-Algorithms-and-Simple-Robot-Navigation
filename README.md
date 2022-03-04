@@ -3,10 +3,10 @@
   *This page must be viewed in dark mode.* 🕶
 </p>
 <p style="text-align:justify">
-  The purpose of this repo is to study and gain an understanding of some of the most common search algorithms in AI. 
+  The purpose of this repo is to study and gain an understanding of some of the most common search algorithms in computer science and AI. 
   These are breadth-first search, depth-first search, greedy search and A* search.
   The algorithms are written in Python and colorful animations are used to show how they work.
-  They will be used by robots to make decisions as they navigate a lonely and barren virtual world.
+  They will be used by robots to make decisions as they navigate a 2D virtual world.
 </p>
 <p style="text-align:justify">
   This problem of simple robot navigation involves N simple circular robots of radius R on a 2D m by n grid, 
@@ -18,8 +18,8 @@
  
 <h1>Formalization</h1>
 <p style="text-align:justify">
-  In order to use a computer to solve a problem, we have to formulate the problem in such a way that a computer will be abe to understand it,
-  which often involves mathematics. If you are bored by this, simply skip it and proceed to the animations, where you can
+  First, the problem must be formulated in such a way that a computer will be abe to understand it, which involves mathematics. 
+  If you are bored by this, simply skip it and proceed to the animations, where you can
   observe what is explained here.
 </p>
 <p style="text-align:justify">
@@ -29,25 +29,26 @@
 <p align="center"><img style="width:30%" src="photos/grid.png"/></p>
 
 <p style="text-align:justify">
-  Each robot is given a unique integer identifier j. The cell in which the j<span style="font-size:xx-small; vertical-align:super">th</span>
+  Each robot is given a unique integer identifier j. The cell in which the j<sup>th</sup>
   robot is located is called a substate. The state of N robots is a list of each substate indexed by j in ascending order.
   Each robot j has a set of 9 available actions:
   { up, down, right, left, up-right, up-left, down-right, down-left, idle }.
   The robot chooses 1 of these actions to reach 1 of 9 unique substates.
-  N robots provide N unique sets of 9 actions having 9<span style="font-size:xx-small; vertical-align:super">N</span> 
-  unique combinations, assuming their movement is unrestricted.
-  This provides 9<span style="font-size:xx-small; vertical-align:super">N</span> reachable states. 
+  N robots provide N unique sets of 9 actions, which provides at most 9<sup>N</sup> 
+  unique reachable states (when their movement is not restricted by the grid boarder or a collision).
   The reachable states of N robots is called the successor set.
 </p>
 
 <p align="center"><img style="width:40%" src="photos/definitions.png"/></p>
 
 <p style="text-align:justify">
-  Robot radii are a parameter used to calculate collisions and are allowed to be any length. 
+  Robot radius is a parameter used to calculate collisions and is allowed to be any length. 
   There is a vague concept of velocity in the program. 
-  The speed v of the robots must be identical moving horizontally and vertically and √2v when moving diagonally.
+  The speed of the robots is v when moving horizontally and vertically and √2v when moving diagonally,
+  so that the time it takes each robot to move in any direction is identical.
   However, transitions from one state to another occur instantaneously. 
   All robots must arrive at their subsequent substates at the same time, but that time is arbitrary.
+ 
 <p style="text-align:justify">
   The following restrictions on the successor set apply:
   (1) robots move by one grid unit if horizontally or vertically and two grid units if diagonally,
@@ -62,8 +63,7 @@
   For restriction (3), simple kinematics can be used to determine whether an action leads to a collision. 
   The derivation of how this is done is summarized below. 
   The time taken to transition between substates is set to 1 second, for convenience.
-  If one is not familiar with kinematics, it would be hard to learn from reading this alone.
-  To avoid confusion, just enjoy the proceeding animations and observe that the robots indeed do not collide.
+  If one is not familiar with kinematics, just enjoy the proceeding animations and observe that the robots indeed do not collide.
 </p>
 
 <p align="center"><img src="photos/kinematics.png"/></p>
@@ -81,28 +81,29 @@
   A searching algorithm typically searches for a solution in what is called a tree.
   Tree structures are composed of nodes. A single node has a single parent node and one or more
   child nodes, for which it is the parent node. The branches extending from parent to child nodes create
-  what looks like an upside down tree in which the root node is at the top. The root node is the only node
-  that has no parent and represents the grandparent of all nodes in the tree. 
+  what looks like an upside down tree in which the root node is at the top. 
+  The root node is the only node that has no parent and represents the grandparent of all nodes in the tree. 
   The depth of the node is the number of parent nodes above it. 
   Sibling nodes are nodes that share the same parent. Leaf nodes are the bottommost nodes, which have no children.
   The path of a node is its lineage to the root node.
 </p>
 <p style="text-align:justify">
   For this problem, each node represents a state.
-  Child nodes represent the states reachable from the parent node.
+  Child nodes represent the states reachable from the parent state and the successor set.
   The branch connecting the parent node to the child node represents the action taken to reach the child state. 
   The children of a node are generated by the successor. This is termed "expanding" the node.
   The initial state is the root node, and the goal state is a leaf node.
   A solution is the path from the root node to the node containing the goal state.
+  The length of a particular path is the number of nodes expanded to reach a particular node, starting from the root.
 </p>
 <h1>Writing the Tree in Python</h1>
 <p style="text-align:justify">
   This script defines a node which is used to create the tree.
-  The paremeter number uniquely identifies a node. This is necessary when graphing the 
+  The paremeter "number" uniquely identifies a node. This is necessary when graphing the 
   tree, because the state itself cannot be used to uniquely identify the node.
-  The parameter sibling is the number of the node in relation to its siblings. This is used to determine the horizontal position of 
-  the node in the tree when graphing. The function lineage generates a factor
-  used to constrict the spread of lower branches in the tree when they are graphed so they do not overlap. 
+  The parameter sibling is the number of the node in relation to its siblings. 
+  This is used to determine the horizontal position of the node in the tree when graphing. 
+  The function "lineage" generates a factor used to constrict the spread of lower branches in the tree when they are graphed so that they do not overlap. 
   The path cost will be explained later.
 </p>
 
@@ -110,7 +111,7 @@
 
 <h1>Graphing and Animating the Search Process</h1>
 <p style="text-align:justify">
-  Graphing and animating the search process is used to visualize how the algorithms work. 
+  Graphing and animating the search process will be used to visualize how the algorithms work. 
   This class generates a png of the search tree and the current path of the robot on the grid, given a node.
   The tree and path are regenerated with each node processed. The png files are turned into png animations outside of Python.
 </p>
@@ -120,15 +121,15 @@
 <h1>Breadth-First Search</h1>
 <p style="text-align:justify">
   This algorithm is used to explore the tree by expanding all of the nodes at the present depth prior to moving on to the next depth.
-  In other words, breadth-first search explores paths of length 1 first, then all those of length 2, and so on.
-  Therefore, if a solution exists, breadth-first search will find the shallowest goal state first, making it 
+  In other words, breadth-first search explores all paths of length 1 first, then all those of length 2, and so on.
+  Therefore, if a solution exists, breadth-first search will find the shallowest goal state, making it 
   complete and optimal. However, beadth-first search has an exponential time and space complexity bound,
   which means it is only practical for simple problems.
 </p>
 <h1>Breadth-First Search in Python</h1>
 <p style="text-align:justify">
-  The algorithm is written using the classes above. A list containing explored nodes is used
-  to prevent the aglorithm from exploring previously visited states.
+  The algorithm is written using the classes above. 
+  A set containing explored nodes is used to prevent the aglorithm from exploring previously visited states.
   The frontier contains all of the nodes to be expanded as a first-in-first-out (FIFO) queue.
 </p>
 
@@ -136,10 +137,9 @@
 
 <h1>Examples</h1>
 <p style="text-align:justify">
-  With only 1 robot on a 4 by 4 grid with an initial state [ ( 1, 1 ) ] and a goal state [ ( 4, 4 ) ],
+  With only 1 robot on a 4 by 4 grid with an initial state [(1, 1)] and a goal state [(4, 4)],
   breadth-first search finds the path below.
-  (This site uses animated png files to illustrate how the algorithms work. 
-  If you are using a browser that does not support animated png files, please switch to one that does.)
+  (If you are using a browser that does not support animated png files, please switch to one that does.)
 </p>
 
 <p align="center"><img src="animations/BFS/solution1.png"/></p>
@@ -285,14 +285,12 @@
 </p>
 <p style="text-align:justify">
   The maximum depth of the tree is a path in which one of the robots traverses the full area of the grid
-  each time the other robot moves to also traverse the full area of the grid, or
-  ( n<span style="font-size:xx-small; vertical-align:super">2</span> - 1 )<span style="font-size:xx-small; vertical-align:super">2</span>
-  + n<span style="font-size:xx-small; vertical-align:super">2</span> - 1 = n<span style="font-size:xx-small; vertical-align:super">4</span> - n<span style="font-size:xx-small; vertical-align:super">2</span>,
+  each time the other robot moves to also traverse the full area of the grid, or (n<sup>2</sup> - 1 )<sup>2</sup> + n<sup>2</sup> - 1 = n<sup>4</sup> - n<sup>2</sup>,
   for m = n, which gives a maximum depth of 2,352 for m = n = 7.
-  That means the search tree in its entirety consists of about 80<span style="font-size:xx-small; vertical-align:super">2352</span> nodes.
-  Try plugging that into a calculator. That's more than the number of atoms that exist in the observable universe, by more than just a lot!
+  That means the search tree in its entirety consists of about 80<sup>2352</sup> nodes.
+  That's more than the number of atoms that exist in the observable universe.
   Imagine traversing a depth of 2352 in this massive tree. 
-  Who would have thought a simple program and a simple problem would produce such an astounding result.
+  Who would have thought this simple problem would have produced such an astounding result.
   We should be happy that any solution was found, but we can do better.
 </p>
 <p align="center"><img src="animations/greedy/greedy_7x7_2r.png"/><img src="animations/greedy/greedy_7x7_2r_grid.png"/></p>

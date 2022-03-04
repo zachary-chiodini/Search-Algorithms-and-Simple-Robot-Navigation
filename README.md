@@ -376,7 +376,7 @@
   The search process and path is animated below. 
   The modified A* search finds a solution after expanding 55 nodes.
   This is significantly more than the 6 greedy search took to find a solution, but
-  in a world of around 80<span style="font-size:xx-small; vertical-align:super">2352</span> options,
+  in a world of around 80<sup>2352</sup> options,
   browsing through just 55 to find an optimal one seems rather efficient.
   Initially, the robots rush to the goal again and almost make the same mistake as their greedy counterparts,
   but instead of pushing eachother aside, they try to work together.

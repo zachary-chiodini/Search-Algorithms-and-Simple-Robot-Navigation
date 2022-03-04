@@ -1,7 +1,9 @@
 <h1>Search Algorithms and Simple Robot Navigation</h1>
- *This page must be viewed in dark mode.* 🕶
- *Please open the README file and view the page in full screen so that the animations will be loaded at the same time and be in sync.* ♾️
- *Please use a browser that supports animated png files* ⚠️
+
+ #*This page must be viewed in dark mode.* 🕶
+ #*Please open the README file and view the page in full screen so that the animations will be loaded at the same time and be in sync.* ♾️
+ #*Please use a browser that supports animated png files* ⚠️
+ 
 <p style="text-align:justify">
   The purpose of this repo is to study and gain an understanding of some of the most common search algorithms in computer science and AI. 
   These are breadth-first search, depth-first search, greedy search and A* search.

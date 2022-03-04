@@ -1,6 +1,8 @@
 <h1>Search Algorithms and Simple Robot Navigation</h1>
 <p style="text-align:justify">
   *This page must be viewed in dark mode.* 🕶
+  *Please open the README file and view the page in full screen so that the animations will be loaded at the same time and be in sync.* ♾️
+  *Please use a browser that supports animated png files* ⚠️
 </p>
 <p style="text-align:justify">
   The purpose of this repo is to study and gain an understanding of some of the most common search algorithms in computer science and AI. 
@@ -126,6 +128,7 @@
   complete and optimal. However, beadth-first search has an exponential time and space complexity bound,
   which means it is only practical for simple problems.
 </p>
+
 <h1>Breadth-First Search in Python</h1>
 <p style="text-align:justify">
   The algorithm is written using the classes above. 
@@ -146,7 +149,8 @@
 <p style="text-align:justify">
   The search process and path are animated below.
   The violet portion of the search tree shows the current path.
-  The current path is also animated on the grid below the tree.
+  The current path is also animated on the grid to the right of the tree.
+  (Please open the README.md file and view the page on a full screen so that the animations will be loaded at the same time and be in sync.)
   Reachable states are highlighted in green on the grid.
   The tree expands 30 nodes before finding a solution.
   This is the shortest path to the goal state and therefore the optimal solution.
@@ -155,7 +159,9 @@
   Some nodes produce less children because available actions are reduced by encountering the grid boundary 
   and by preventing revisits to previously explored states.
 </p>
+
 <p align="center"><img src="animations/BFS/BFS_1r.png"/><img src="animations/BFS/BFS_1r_grid.png"/></p>
+
 <p style="text-align:justify">
   With 2 robots on a 2 by 3 grid with an initial state [(1, 1), (2, 1)] and a goal state [(2, 3), (1, 3)],
   breadth-first search finds the path below.
@@ -164,8 +170,8 @@
 <p align="center"><img src="animations/BFS/solution2.png"/></p>
 
 <p style="text-align:justify">
-  The search process and path is animated below.
-  On the grid below the tree, the path of robot 1 is highlighted in violet and the path of robot 2 is highlighted in orange. 
+  The search process and path are animated below.
+  On the grid to the right of the tree, the path of robot 1 is highlighted in violet and the path of robot 2 is highlighted in orange. 
   However, there is really only a single path containing the paths of both robots. 
   The tree expands 79 nodes before finding an optimal solution.
   You can see how breadth-first search exhausts every possible path of a certain length before moving on to the next, until it reaches the goal state. 

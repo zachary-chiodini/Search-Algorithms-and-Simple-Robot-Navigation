@@ -326,7 +326,7 @@
   We should be happy that any solution was found, but we can do better.
 </p>
 
-<p align="center"><img src="animations/greedy/greedy_7x7_2r.png"/><img src="animations/greedy/greedy_7x7_2r_grid.png"/></p
+<p align="center"><img src="animations/greedy/greedy_7x7_2r.png"/><img src="animations/greedy/greedy_7x7_2r_grid.png"/></p>
  
 <h1>A* Search</h1>
 <p style="text-align:justify">

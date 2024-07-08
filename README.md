@@ -344,7 +344,7 @@
 </p>
 
 <p style="text-align:justify">
-  This problem is not a typical path finding problem. The path cose described above fails with multiple robots. 
+  This problem is not a typical path finding problem. The path cost described above fails with multiple robots. 
   The reason is that the path cost plus the heuristic value does not consider solutions having idle states as suboptimal. 
   The optimal solution here is the quickest solution, not necessarily the solution in which the robots travel the least distance.
   Careful consideration went into designing the path cost function so that all robots will be directed toward their goal substates

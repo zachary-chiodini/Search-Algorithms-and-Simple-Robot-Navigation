@@ -213,7 +213,7 @@
 
 <p style="text-align:justify">
   The search process and path are animated below. The search expands 10 nodes before finding a solution.
-  In this problem, depth-frst search is faster than breadth-first search, but the path that it found is far from optimal.
+  For this problem, depth-frst search is faster than breadth-first search, but the path that it found is far from optimal.
 </p>
 
 <p align="center"><img src="animations/DFS/DFS_1r.png"/><img src="animations/DFS/DFS_1r_grid.png"/></p>

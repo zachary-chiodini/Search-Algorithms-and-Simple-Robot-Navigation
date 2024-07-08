@@ -87,7 +87,7 @@
   The root node is the only node that has no parent and represents the grandparent of all nodes in the tree. 
   The depth of the node is the number of parent nodes above it. 
   Sibling nodes are nodes that share the same parent. Leaf nodes are the bottommost nodes, which have no children.
-  The path of a node is its lineage to the root node.
+  The path of a node is its lineage from the root node.
 </p>
 <p style="text-align:justify">
   For this problem, each node represents a state.

@@ -1,7 +1,7 @@
 <h1>Search Algorithms and Simple Robot Navigation</h1>
 
  <h3>*This page must be viewed in dark mode.* 🕶</h3>
- <h3>*Please open the README file and view the page in full screen or animations may not be in sync.* ♾️</h3>
+ <h3>*Please click on the README.md file and view the page in full screen or animations may not be in sync.* ♾️</h3>
  <h3>*Please use a browser that supports animated png files* ⚠️</h3>
  
 <p style="text-align:justify">

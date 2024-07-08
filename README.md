@@ -345,8 +345,6 @@
 </p>
 
 <p style="text-align:justify">
-  The path cost for the typical path finding problem described above fails with multiple robots.
-  The optimal solution for this problem is the quickest solution, not necessarily the solution in which the robots travel the least distance.
   Careful consideration went into designing the path cost function so that all robots will be directed toward their goal substates
   while the admissibility and consistency of the heuristic function is preserved.
 </p>

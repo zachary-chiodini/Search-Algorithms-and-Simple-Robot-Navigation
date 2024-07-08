@@ -178,6 +178,7 @@
   The tree expands 79 nodes before finding an optimal solution.
   You can see how breadth-first search exhausts every possible path of a certain length before moving on to the next, until it reaches the goal state. 
   Due to the exponential time and space complexity of breadth-fist search, more complicated examples cannot be explored.
+  (It's actually probably due to my unoptimized code).
 </p>
 
 <p align="center"><img src="animations/BFS/BFS_2x3_2r.png"/><img src="animations/BFS/BFS_2x3_2r_grid.png"/></p>

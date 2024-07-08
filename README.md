@@ -307,26 +307,14 @@
   Will they ever learn?
 </p>
 <p style="text-align:justify">
-  In this example, we have separated the 2 robots and increased the dimensions of the grid
-  so that the number of actions available to each of them is no longer restricted.
-  This allows the successor to generate all 9<sup>N</sup> children for most nodes,
-  and the problem becomes impractical to solve using breadth-first or depth-first search.
-  The reason is the following: The root node expands into 80 child nodes, 
+  This problem is already too impractical to solve using breadth-first or depth-first search.
+  The root node expands into 80 child nodes, 
   or 9<sup>2</sup> minus the state in which both robots are idle (which is the initial state and therefore cannot be revisited). 
   Each of these 80 nodes can be expanded into roughly 80 more child nodes, which gives about 80<sup>2</sup> total nodes.
   The number of nodes increases approximately exponentially with depth, like 80<sup>d</sup>, where d is the depth.
-  The shallowest goal state is found at a depth of 5, which means breadth-first search would have to explore (at worst) roughly 
-  80<sup>5</sup>, or 3 billion nodes, before finding a solution.
+  The shallowest goal state is found at a depth of 5, which means breadth-first search would have to explore roughly 
+  80<sup>5</sup> (3 billion) nodes before finding a solution.
   Comparatively, depth-first search would meander aimlessly down a very deep and random path.
-</p>
-<p style="text-align:justify">
-  The maximum depth of the tree is a path in which one of the robots traverses the full area of the grid
-  each time the other robot moves to also traverse the full area of the grid, or (n<sup>2</sup> - 1 )<sup>2</sup> + n<sup>2</sup> - 1 = n<sup>4</sup> - n<sup>2</sup>,
-  for m = n, which gives a maximum depth of 2,352 for m = n = 7.
-  That means the search tree in its entirety consists of about 80<sup>2352</sup> nodes.
-  That's more than the number of atoms that exist in the observable universe.
-  Imagine depth-first search traversing a depth of 2352 in this massive tree.
-  We should be happy that any solution was found, but we can do better.
 </p>
 
 <p align="center"><img src="animations/greedy/greedy_7x7_2r.png"/><img src="animations/greedy/greedy_7x7_2r_grid.png"/></p>

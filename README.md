@@ -326,6 +326,7 @@
   The step cost is the cost of moving from a parent state to a child state.
   For a typical path finding problem with one robot, the path cost is the actual distance the robot has traveled thus
   far along the path and the hueristic is the estimated remaining distance.
+  (This problem is not a typical path finding problem.)
   This way, the search algorithm should find the optimal solution with a priority queue while "pruning" the search tree
   of paths that are predicted to be suboptimal.
   A* search is optimal and complete, as long as the heuristic function is admissable and consistent.
@@ -344,7 +345,7 @@
 </p>
 
 <p style="text-align:justify">
-  This problem is not a typical path finding problem. The path cost described above fails with multiple robots. 
+  The path cost for the typical path finding problem described above fails with multiple robots. 
   The reason is that the path cost plus the heuristic value does not consider solutions having idle states as suboptimal. 
   The optimal solution here is the quickest solution, not necessarily the solution in which the robots travel the least distance.
   Careful consideration went into designing the path cost function so that all robots will be directed toward their goal substates

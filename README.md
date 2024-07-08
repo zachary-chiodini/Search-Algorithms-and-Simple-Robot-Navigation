@@ -345,11 +345,6 @@
 </p>
 
 <p style="text-align:justify">
-  Careful consideration went into designing the path cost function so that all robots will be directed toward their goal substates
-  while the admissibility and consistency of the heuristic function is preserved.
-</p>
-
-<p style="text-align:justify">
   The path cost function gives actions directed toward the goal state a lower step cost.
   For robot j moving from a parent to a child substate, the step cost is the striaght line distance from the parent substate
   to the child substate plus the magnitude of the difference of two vectors.

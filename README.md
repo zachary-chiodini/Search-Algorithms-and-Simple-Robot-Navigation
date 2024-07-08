@@ -82,7 +82,8 @@
 <p style="text-align:justify">
   A searching algorithm typically searches for a solution in what is called a tree.
   Tree structures are composed of nodes. A single node has a single parent node and one or more
-  child nodes, for which it is the parent node. The branches extending from parent to child nodes form the tree, which is depicted upside down with the root node is at the top. 
+  child nodes, for which it is the parent node. The generational branches extending from parent to child nodes form the tree,
+  which is depicted upside down with the root node at the top. 
   The root node is the only node that has no parent and represents the grandparent of all nodes in the tree. 
   The depth of the node is the number of parent nodes above it. 
   Sibling nodes are nodes that share the same parent. Leaf nodes are the bottommost nodes, which have no children.

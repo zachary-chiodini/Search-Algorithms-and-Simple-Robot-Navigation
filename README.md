@@ -324,9 +324,9 @@
   This algorithm chooses nodes based on the sum of their heuristic value and path cost in ascending order.
   The path cost is the sum of all step costs in the current path. 
   The step cost is the cost of moving from a parent state to a child state.
-  For a typical path finding problem with one robot, the path cost is the actual distance the robot has traveled thus
+  For a path finding problem with only one robot, the path cost is the actual distance the robot has traveled thus
   far along the path and the hueristic is the estimated remaining distance.
-  (This problem is not a typical path finding problem.)
+  (For more than one robot, the path cost is defined differently.)
   This way, the search algorithm should find the optimal solution with a priority queue while "pruning" the search tree
   of paths that are predicted to be suboptimal.
   A* search is optimal and complete, as long as the heuristic function is admissable and consistent.
@@ -407,7 +407,7 @@
 <p align="center"><img src="animations/astar/solution_7x7_2r.png"/></p>
 
 <p style="text-align:justify">
-  The search process and path are animated below. 
+  The search process and path are animated below.
   The modified A* search finds a solution after expanding 55 nodes.
   This is significantly more than the 6 greedy search took to find a solution, but in a world of around 80<sup>2352</sup> options,
   browsing through just 55 to find an optimal one seems rather efficient.

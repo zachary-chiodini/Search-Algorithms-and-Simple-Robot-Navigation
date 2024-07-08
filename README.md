@@ -36,7 +36,7 @@
   Each robot j has a set of 9 available actions:
   { up, down, right, left, up-right, up-left, down-right, down-left, idle }.
   The robot chooses 1 of these actions to reach 1 of 9 unique substates.
-  N robots provide N unique sets of 9 actions, which provides at most 9<sup>N</sup> 
+  N robots provide a total of N sets of 9 actions, which provides at most 9<sup>N</sup> 
   unique reachable states (when their movement is not restricted by the grid boarder or a collision).
   The reachable states of N robots is called the successor set.
 </p>

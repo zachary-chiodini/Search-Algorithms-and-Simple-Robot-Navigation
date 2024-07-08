@@ -56,6 +56,8 @@
   (1) robots move by one grid unit if horizontally or vertically and effectively two grid units if diagonally,
   (2) robots cannot exit the grid, 
   (3) robots cannot collide.
+  It is not shown in the formalization, but in order to prevent an infinite loop,
+  the successor set cannot explore previously visited states.
   Restrictions (1) and (2) are straight forward and summarized below.
 </p>
 
